@@ -1,10 +1,10 @@
-package com.aeropuerto.aeropuertoapi;
+package com.aeropuerto.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApiRestDelAeropuertoApplicationTests {
+class AirportApplicationTests {
 
 	@Test
 	void contextLoads() {

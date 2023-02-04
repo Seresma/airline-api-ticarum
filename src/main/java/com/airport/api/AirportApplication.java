@@ -1,13 +1,13 @@
-package com.aeropuerto.api;
+package com.airport.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AeropuertoApplication {
+public class AirportApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AeropuertoApplication.class, args);
+		SpringApplication.run(AirportApplication.class, args);
 	}
 
 }

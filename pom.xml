@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.2</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>2.5.8</version>
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.aeropuerto</groupId>
-	<artifactId>aeropuerto-api</artifactId>
+	<groupId>com.airport</groupId>
+	<artifactId>airport-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>API REST del Aeropuerto</name>
+	<name>Airport REST API</name>
 	<description>Prueba técnica TICARUM fecha 04/02/2023</description>
 	<properties>
 		<java.version>11</java.version>
@@ -29,7 +29,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -45,8 +44,17 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -63,5 +71,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
