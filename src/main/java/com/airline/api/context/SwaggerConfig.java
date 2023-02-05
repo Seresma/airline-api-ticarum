@@ -1,4 +1,4 @@
-package com.airport.api.context;
+package com.airline.api.context;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ public class SwaggerConfig {
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("com.airport.api.controllers"))
+				.apis(RequestHandlerSelectors.basePackage("com.airline.api.controllers"))
 				.paths(PathSelectors.any())
 				.build()
 				.apiInfo(apiInfo());
@@ -27,10 +27,12 @@ public class SwaggerConfig {
 
 	public ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("Airport API")
-				.description("Swagger Airport API Documentation")
+				.title("Airline API")
+				.description("Swagger Airline REST API Documentation")
 				.version("1.0.0")
-				.contact(new Contact("Sergio Escudero Manzano", "https://sergio.escudero.dev.com", "sergio.escudero.dev@gmail.com"))
+				.termsOfServiceUrl("https://example.com")
+				.licenseUrl("https://example.com")
+				.contact(new Contact("Sergio Escudero Manzano", "https://example.com", "sergio.escudero.dev@gmail.com"))
 				.build();
 	}
 }

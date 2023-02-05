@@ -8,10 +8,10 @@
 		<version>2.5.8</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.airport</groupId>
-	<artifactId>airport-api</artifactId>
+	<groupId>com.airline</groupId>
+	<artifactId>airline-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Airport REST API</name>
+	<name>Airline REST API</name>
 	<description>Prueba técnica TICARUM fecha 04/02/2023</description>
 	<properties>
 		<java.version>11</java.version>
@@ -53,6 +53,11 @@
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.1.0</version>
 		</dependency>
 	</dependencies>
 	<build>
