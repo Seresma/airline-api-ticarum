@@ -4,5 +4,5 @@ import com.airline.api.persistence.domain.Airline;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IAirlineRepository extends JpaRepository<Airline, Long> {
-    Airline findByName(String name);
+    Airline findByNameIgnoreCase(String name);
 }

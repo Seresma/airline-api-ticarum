@@ -27,8 +27,8 @@ public class SwaggerConfig {
 
 	public ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("Airline API")
-				.description("Swagger Airline REST API Documentation")
+				.title(GlobalConfig.AIRLINE_NAME + " API")
+				.description("Swagger " + GlobalConfig.AIRLINE_NAME + " REST API Documentation")
 				.version("1.0.0")
 				.termsOfServiceUrl("https://example.com")
 				.licenseUrl("https://example.com")

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class GlobalConfig {
-    public static final String AIRLINE_NAME = "MisakiAirlines";
+    public static final String AIRLINE_NAME = "airline";
     @Bean
     public ModelMapper modelMapper (){
         return new ModelMapper();

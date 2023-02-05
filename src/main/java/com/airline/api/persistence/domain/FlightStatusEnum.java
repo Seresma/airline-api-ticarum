@@ -1,5 +1,5 @@
 package com.airline.api.persistence.domain;
 
-public enum StatusEnum {
+public enum FlightStatusEnum {
     PENDING, DEPARTED, ARRIVED
 }

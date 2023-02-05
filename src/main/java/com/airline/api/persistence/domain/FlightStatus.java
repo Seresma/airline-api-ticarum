@@ -6,20 +6,17 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "registrationCode")
-public class Plane {
+@EqualsAndHashCode(of = "id")
+public class FlightStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String model;
-    private Integer capacity;
-    @ManyToOne
-    @JoinColumn(name="airline_id")
-    private Airline airline;
-    private String registrationCode;
+    private LocalDateTime statusDate;
+    private FlightStatusEnum status;
 }

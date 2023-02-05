@@ -4,6 +4,7 @@ import com.airline.api.context.GlobalConfig;
 import com.airline.api.dto.FlightDTO;
 import com.airline.api.persistence.domain.Airline;
 import com.airline.api.persistence.domain.Flight;
+import com.airline.api.responses.FlightStatusResponse;
 import com.airline.api.services.AirlineService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @RequestMapping(GlobalConfig.AIRLINE_NAME)
@@ -26,7 +28,7 @@ public class AirlineController {
     }
 
     @GetMapping("/vuelo")
-    public List<Flight> getPendingFlights() {
+    public Set<Flight> getPendingFlights() {
         return this.airlineService.getPendingFlights();
     }
 
@@ -52,4 +54,21 @@ public class AirlineController {
         this.airlineService.deleteFlightById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping ("/salida")
+    public Set<Flight> getDepartedFlights() {
+        return this.airlineService.getDepartedFlights();
+    }
+
+    @GetMapping ("/salida/{ID_VUELO}")
+    public ResponseEntity<FlightStatusResponse> getFlightStatus(@PathVariable("ID_VUELO") Long id) {
+        return ResponseEntity.ok(this.airlineService.getFlightStatus(id));
+    }
+
+    @PutMapping ("/salida/{ID_VUELO}/despegue")
+    public ResponseEntity<Void> departFlight(@PathVariable("ID_VUELO") Long id) {
+        this.airlineService.departFlight(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
