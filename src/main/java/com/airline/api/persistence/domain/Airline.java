@@ -14,7 +14,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "name")
+@EqualsAndHashCode(of = "id")
 public class Airline {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +35,7 @@ public class Airline {
     }
 
     public boolean addDepartedFlight(Flight flight) {
+        this.removePendingFlight(flight);
         return this.departedFlights.add(flight);
     }
 

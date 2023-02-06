@@ -70,7 +70,7 @@ public class AirlineController {
             @ApiResponse(code = 404, message = "Flight not found"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
-    @GetMapping ("/vuelo/{ID_VUELO}")
+    @GetMapping("/vuelo/{ID_VUELO}")
     public ResponseEntity<Flight> findFlightById(@ApiParam(value = "Flight ID", required = true) @PathVariable("ID_VUELO") Long id) {
         return ResponseEntity.ok(this.airlineService.findFlightById(id));
     }
@@ -110,7 +110,7 @@ public class AirlineController {
             @ApiResponse(code = 404, message = "No departed flights found"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
-    @GetMapping ("/salida")
+    @GetMapping("/salida")
     public ResponseEntity<Set<Flight>> findAllDepartedFlights() {
         return ResponseEntity.ok(this.airlineService.getDepartedFlights());
     }
@@ -123,7 +123,7 @@ public class AirlineController {
             @ApiResponse(code = 404, message = "Flight not found"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
-    @GetMapping ("/salida/{ID_VUELO}")
+    @GetMapping("/salida/{ID_VUELO}")
     public ResponseEntity<FlightStatusResponse> getFlightStatus(@ApiParam(value = "Flight ID", required = true) @PathVariable("ID_VUELO") Long id) {
         return ResponseEntity.ok(this.airlineService.getFlightStatus(id));
     }
@@ -136,7 +136,7 @@ public class AirlineController {
             @ApiResponse(code = 404, message = "Flight not found"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
-    @PutMapping ("/salida/{ID_VUELO}/despegue")
+    @PutMapping("/salida/{ID_VUELO}/despegue")
     public ResponseEntity<Void> departFlight(@ApiParam(value = "Flight ID", required = true) @PathVariable("ID_VUELO") Long id) {
         this.airlineService.departFlight(id);
         return ResponseEntity.noContent().build();

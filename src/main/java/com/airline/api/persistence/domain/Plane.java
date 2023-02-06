@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "registrationCode")
+@EqualsAndHashCode(of = "id")
 public class Plane {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

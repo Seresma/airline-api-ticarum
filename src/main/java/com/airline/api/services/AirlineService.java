@@ -104,8 +104,9 @@ public class AirlineService {
 
     public FlightStatusResponse getFlightStatus(Long id) {
         Flight flight = this.findFlightById(id);
-        if(flight.getHasDeparted())
-            return new FlightStatusResponse(true, flight.getLastFlightStatusDate());
+        if(flight.getHasDeparted()){
+            return modelmapper.map(flight, FlightStatusResponse.class);
+        }
         // TODO PUEDE FALLAR
         return new FlightStatusResponse(false, null);
     }
@@ -118,9 +119,9 @@ public class AirlineService {
         if(!flight.getHasDeparted() && airline.isInPendingFlights(flight)) {
             flight.setHasDeparted(true);
             flight.addFlightStatus(this.addFlightStatus(LocalDateTime.now(), FlightStatusEnum.DEPARTED));
-            Flight flight1 = this.flightRepository.save(flight);
-            airline.addDepartedFlight(flight1);
-            airline.getPendingFlights().remove(flight1);
+            flight.setDepartDate(LocalDateTime.now());
+            airline.addDepartedFlight(flight);
+            this.flightRepository.save(flight);
             this.airlineRepository.save(airline);
         }
     }

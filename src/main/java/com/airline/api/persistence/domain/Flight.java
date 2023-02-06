@@ -1,6 +1,7 @@
 package com.airline.api.persistence.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +16,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "number")
+@EqualsAndHashCode(of = "id")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +27,7 @@ public class Flight {
     private String destination;
     private LocalDateTime etd;
     private LocalDateTime eta;
+    private LocalDateTime departDate;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "flight_id")
     private List<FlightStatus> statuses = new ArrayList<>();
@@ -37,14 +40,6 @@ public class Flight {
         List<FlightStatus> statuses = this.getStatuses();
         if(statuses.size() > 0)
             return statuses.get(statuses.size() - 1);
-        return null;
-    }
-
-    @JsonIgnore
-    public LocalDateTime getLastFlightStatusDate() {
-        FlightStatus flightStatus = this.getLastFlightStatus();
-        if(flightStatus != null)
-            return flightStatus.getStatusDate();
         return null;
     }
 

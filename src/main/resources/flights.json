@@ -1,0 +1,16 @@
+[
+  {
+    "destination": "Murcia",
+    "eta": "2023-03-08T12:50:48.277Z",
+    "etd": "2023-03-08T10:50:48.277Z",
+    "origin": "Madrid",
+    "planeRegistrationCode": "EC-AA2"
+  },
+  {
+    "destination": "Paris",
+    "eta": "2023-03-06T18:34:24.443Z",
+    "etd": "2023-03-06T17:34:24.443Z",
+    "origin": "Londres",
+    "planeRegistrationCode": "EC-AA1"
+  }
+]
