@@ -22,7 +22,6 @@ public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String number;
     private String origin;
     private String destination;
     private LocalDateTime etd;
@@ -35,16 +34,13 @@ public class Flight {
     @ManyToOne
     @JoinColumn(name="plane_id")
     private Plane plane;
-    @JsonIgnore
-    public FlightStatus getLastFlightStatus() {
-        List<FlightStatus> statuses = this.getStatuses();
-        if(statuses.size() > 0)
-            return statuses.get(statuses.size() - 1);
-        return null;
-    }
 
     public void addFlightStatus(FlightStatus flightStatus){
         this.getStatuses().add(flightStatus);
     }
 
+    @JsonIgnore
+    public boolean isCorrectSchedule() {
+        return this.eta.isAfter(this.etd);
+    }
 }

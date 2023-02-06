@@ -1,7 +1,9 @@
 package com.airline.api.services;
 
 import com.airline.api.context.GlobalConfig;
-import com.airline.api.dto.FlightDTO;
+import com.airline.api.dto.CreateFlightDTO;
+import com.airline.api.dto.UpdateFlightDTO;
+import com.airline.api.exceptions.*;
 import com.airline.api.persistence.domain.*;
 import com.airline.api.persistence.repositories.IFlightRepository;
 import com.airline.api.persistence.repositories.IAirlineRepository;
@@ -25,63 +27,89 @@ public class AirlineService {
     private final IFlightStatusRepository flightStatusRepository;
     private final ModelMapper modelmapper;
 
-    private Airline getAirline() {
-        return this.airlineRepository.findByNameIgnoreCase(GlobalConfig.AIRLINE_NAME);
-    }
-
     private FlightStatus addFlightStatus(LocalDateTime dateTime, FlightStatusEnum flightStatusEnum) {
         return this.flightStatusRepository.save(new FlightStatus(null, dateTime, flightStatusEnum));
     }
 
-    public Airline getInfo() {
-        return this.airlineRepository.findByNameIgnoreCase(GlobalConfig.AIRLINE_NAME);
+    public Airline getAirline() {
+        Airline airline = this.airlineRepository.findByNameIgnoreCase(GlobalConfig.AIRLINE_NAME);
+        if (airline == null)
+            throw new AirlineNotFoundException(GlobalConfig.AIRLINE_NAME);
+        return airline;
     }
 
     public Set<Flight> getPendingFlights() {
-        return this.getAirline().getPendingFlights();
+        Set<Flight> pendingFlights = this.getAirline().getPendingFlights();
+        if(pendingFlights.isEmpty())
+            throw new EmptyPendingFlightsException();
+        else
+            return pendingFlights;
     }
 
-    public Flight addFlight(FlightDTO flightDTO) {
+    public Flight addFlight(CreateFlightDTO flightDTO) {
         Flight flight = modelmapper.map(flightDTO, Flight.class);
-        // TODO PUEDE FALLAR
+        if(!flight.isCorrectSchedule())
+            throw new InvalidFlightScheduleException();
+
         Plane plane = this.planeRepository.findByRegistrationCode(flightDTO.getPlaneRegistrationCode());
+        if(plane == null)
+            throw new PlaneNotFoundException(flightDTO.getPlaneRegistrationCode());
+
         flight.setPlane(plane);
         flight.setHasDeparted(false);
         flight.addFlightStatus(this.addFlightStatus(LocalDateTime.now(), FlightStatusEnum.PENDING));
+
         Airline airline = this.getAirline();
-        if(!airline.isInDepartedFlights(flight) && airline.addPendingFlight(flight)) {
-            return this.flightRepository.save(flight);
-        }
-        return null;
+        airline.addPendingFlight(flight);
+
+        return this.flightRepository.save(flight);
     }
 
     public Flight findFlightById(Long id) {
-        // TODO PUEDE FALLAR
-        return this.flightRepository.findById(id).orElse(null);
+        return this.flightRepository.findById(id).orElseThrow(() -> new FlightNotFoundException(id));
     }
 
     @Transactional
-    public void updateFlightById(Long id, FlightDTO flightDTO) {
-        // TODO COMPROBACION DE ERRORES
+    public void updateFlightById(Long id, UpdateFlightDTO flightDTO) {
         Flight flight = this.findFlightById(id);
-        String numberUpdate = flightDTO.getNumber();
-        if(numberUpdate != null && !numberUpdate.isBlank())
-            flight.setNumber(numberUpdate);
         String originUpdate = flightDTO.getOrigin();
-        if(originUpdate != null && !originUpdate.isBlank())
+        if(originUpdate != null) {
+            if(originUpdate.isBlank())
+                throw new BlankPropertyException("origin");
+
             flight.setOrigin(originUpdate);
+        }
+
         String destinationUpdate = flightDTO.getDestination();
-        if(destinationUpdate != null && !destinationUpdate.isBlank())
+        if(destinationUpdate != null) {
+            if(destinationUpdate.isBlank())
+                throw new BlankPropertyException("destination");
+
             flight.setDestination(destinationUpdate);
-        LocalDateTime etaUpdate = flightDTO.getEta();
-        if(etaUpdate != null && etaUpdate.isAfter(LocalDateTime.now()))
-            flight.setEtd(etaUpdate);
+        }
+
         LocalDateTime etdUpdate = flightDTO.getEtd();
-        if(etdUpdate != null && etdUpdate.isAfter(LocalDateTime.now()) && etdUpdate.isBefore(flight.getEta()))
-            flight.setEtd(etdUpdate);
+        if(etdUpdate != null) {
+            if(etdUpdate.isAfter(LocalDateTime.now()))
+                flight.setEtd(etdUpdate);
+            else
+                throw new InvalidFlightScheduleException();
+        }
+
+        LocalDateTime etaUpdate = flightDTO.getEta();
+        if(etaUpdate != null) {
+            flight.setEta(etaUpdate);
+            if(etaUpdate.isBefore(LocalDateTime.now()) || !flight.isCorrectSchedule())
+                throw new InvalidFlightScheduleException();
+        }
+
         String registrationCodeUpdate = flightDTO.getPlaneRegistrationCode();
-        if(registrationCodeUpdate != null && !registrationCodeUpdate.isBlank())
-            flight.setPlane(this.planeRepository.findByRegistrationCode(registrationCodeUpdate));
+        if(registrationCodeUpdate != null && !registrationCodeUpdate.isBlank()) {
+            Plane plane = this.planeRepository.findByRegistrationCode(registrationCodeUpdate);
+            if(plane == null)
+                throw new PlaneNotFoundException(flightDTO.getPlaneRegistrationCode());
+            flight.setPlane(plane);
+        }
 
         this.flightRepository.save(flight);
     }
@@ -99,7 +127,11 @@ public class AirlineService {
     }
 
     public Set<Flight> getDepartedFlights() {
-        return this.getAirline().getDepartedFlights();
+        Set<Flight> departedFlights = this.getAirline().getDepartedFlights();
+        if(departedFlights.isEmpty())
+            throw new EmptyDepartedFlightsException();
+        else
+            return departedFlights;
     }
 
     public FlightStatusResponse getFlightStatus(Long id) {
@@ -107,22 +139,23 @@ public class AirlineService {
         if(flight.getHasDeparted()){
             return modelmapper.map(flight, FlightStatusResponse.class);
         }
-        // TODO PUEDE FALLAR
         return new FlightStatusResponse(false, null);
     }
 
     @Transactional
     public void departFlight(Long id) {
         Flight flight = this.findFlightById(id);
-        // TODO PUEDE FALLAR
         Airline airline = this.getAirline();
-        if(!flight.getHasDeparted() && airline.isInPendingFlights(flight)) {
-            flight.setHasDeparted(true);
-            flight.addFlightStatus(this.addFlightStatus(LocalDateTime.now(), FlightStatusEnum.DEPARTED));
-            flight.setDepartDate(LocalDateTime.now());
-            airline.addDepartedFlight(flight);
-            this.flightRepository.save(flight);
-            this.airlineRepository.save(airline);
+        if(flight.getHasDeparted())
+            throw new DepartedFlightException(flight.getId());
+        if(!airline.isInPendingFlights(flight)) {
+            throw new NotPendingFlightException(flight.getId());
         }
+        flight.setHasDeparted(true);
+        flight.addFlightStatus(this.addFlightStatus(LocalDateTime.now(), FlightStatusEnum.DEPARTED));
+        flight.setDepartDate(LocalDateTime.now());
+        airline.addDepartedFlight(flight);
+        this.flightRepository.save(flight);
+        this.airlineRepository.save(airline);
     }
 }
