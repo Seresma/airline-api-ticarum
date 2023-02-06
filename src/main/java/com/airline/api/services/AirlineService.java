@@ -49,7 +49,6 @@ public class AirlineService {
         flight.setHasDeparted(false);
         flight.addFlightStatus(this.addFlightStatus(LocalDateTime.now(), FlightStatusEnum.PENDING));
         Airline airline = this.getAirline();
-        flight.setAirline(airline);
         if(!airline.isInDepartedFlights(flight) && airline.addPendingFlight(flight)) {
             return this.flightRepository.save(flight);
         }

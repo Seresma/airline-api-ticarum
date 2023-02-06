@@ -1,18 +1,13 @@
 package com.airline.api.persistence.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zaxxer.hikari.util.FastList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,15 +19,15 @@ public class Airline {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
     private String name;
-    @Positive
     private Integer planeCount;
     @JsonIgnore
-    @OneToMany(mappedBy = "airline", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "airline_pending_id")
     private Set<Flight> pendingFlights = new HashSet<>();
     @JsonIgnore
-    @OneToMany(mappedBy = "airline", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "airline_departed_id2")
     private Set<Flight> departedFlights = new HashSet<>();
 
     public boolean addPendingFlight(Flight flight) {

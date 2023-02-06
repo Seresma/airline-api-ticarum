@@ -32,12 +32,6 @@ public class Flight {
     @ManyToOne
     @JoinColumn(name="plane_id")
     private Plane plane;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "airline_id")
-    private Airline airline;
-
     @JsonIgnore
     public FlightStatus getLastFlightStatus() {
         List<FlightStatus> statuses = this.getStatuses();

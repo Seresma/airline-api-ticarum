@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -28,7 +27,7 @@ public class AirlineController {
     }
 
     @GetMapping("/vuelo")
-    public Set<Flight> getPendingFlights() {
+    public Set<Flight> findAllPendingFlights() {
         return this.airlineService.getPendingFlights();
     }
 
@@ -56,7 +55,7 @@ public class AirlineController {
     }
 
     @GetMapping ("/salida")
-    public Set<Flight> getDepartedFlights() {
+    public Set<Flight> findAllDepartedFlights() {
         return this.airlineService.getDepartedFlights();
     }
 

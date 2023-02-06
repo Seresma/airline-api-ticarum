@@ -1,5 +1,6 @@
 package com.airline.api.persistence.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 public class FlightStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
     private LocalDateTime statusDate;
     private FlightStatusEnum status;
