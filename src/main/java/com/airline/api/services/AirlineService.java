@@ -105,7 +105,7 @@ public class AirlineService {
     public FlightStatusResponse getFlightStatus(Long id) {
         Flight flight = this.findFlightById(id);
         if(flight.getHasDeparted())
-            return new FlightStatusResponse(flight.getHasDeparted(), flight.getLastFlightStatusDate());
+            return new FlightStatusResponse(true, flight.getLastFlightStatusDate());
         // TODO PUEDE FALLAR
         return new FlightStatusResponse(false, null);
     }

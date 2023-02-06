@@ -27,7 +27,7 @@ public class Airline {
     private Set<Flight> pendingFlights = new HashSet<>();
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "airline_departed_id2")
+    @JoinColumn(name = "airline_departed_id")
     private Set<Flight> departedFlights = new HashSet<>();
 
     public boolean addPendingFlight(Flight flight) {
