@@ -1,4 +1,4 @@
-package com.airline.api.persistence.domain;
+package com.airline.api.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -15,6 +15,9 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = "name")
+})
 public class Airline {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

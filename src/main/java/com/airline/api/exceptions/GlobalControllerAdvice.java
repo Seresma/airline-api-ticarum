@@ -14,16 +14,8 @@ import java.time.LocalDateTime;
 
 @RestControllerAdvice
 public class GlobalControllerAdvice extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(FlightNotFoundException.class)
-    public ResponseEntity<?> handleFlightNotFound(FlightNotFoundException ex, WebRequest request) {
-        ExceptionBody body =
-                new ExceptionBody(LocalDateTime.now(),
-                        HttpStatus.NOT_FOUND, ex.getMessage(),
-                        ((ServletWebRequest) request).getRequest().getRequestURI());
-        return new ResponseEntity<Object>(body, HttpStatus.NOT_FOUND);
-    }
-    @ExceptionHandler(EmptyPendingFlightsException.class)
-    public ResponseEntity<?> handleEmptyPendingFlights(EmptyPendingFlightsException ex, WebRequest request) {
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<?> handleEntityNotFoundException(EntityNotFoundException ex, WebRequest request) {
         ExceptionBody body =
                 new ExceptionBody(LocalDateTime.now(),
                         HttpStatus.NOT_FOUND, ex.getMessage(),
@@ -31,26 +23,17 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler {
         return new ResponseEntity<Object>(body, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(EmptyDepartedFlightsException.class)
-    public ResponseEntity<?> handleEmptyDepartedFlights(EmptyDepartedFlightsException ex, WebRequest request) {
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<?> handleBadRequestException(BadRequestException ex, WebRequest request) {
         ExceptionBody body =
                 new ExceptionBody(LocalDateTime.now(),
-                        HttpStatus.NOT_FOUND, ex.getMessage(),
+                        HttpStatus.BAD_REQUEST, ex.getMessage(),
                         ((ServletWebRequest) request).getRequest().getRequestURI());
-        return new ResponseEntity<Object>(body, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(AirlineNotFoundException.class)
-    public ResponseEntity<?> handleAirlineNotFound(AirlineNotFoundException ex, WebRequest request) {
-        ExceptionBody body =
-                new ExceptionBody(LocalDateTime.now(),
-                        HttpStatus.NOT_FOUND, ex.getMessage(),
-                        ((ServletWebRequest) request).getRequest().getRequestURI());
-        return new ResponseEntity<Object>(body, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<Object>(body, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(DepartedFlightException.class)
-    public ResponseEntity<?> handleDepartFlightException(DepartedFlightException ex, WebRequest request) {
+    public ResponseEntity<?> handleDepartedFlightException(DepartedFlightException ex, WebRequest request) {
         ExceptionBody body =
                 new ExceptionBody(LocalDateTime.now(),
                         HttpStatus.CONFLICT, ex.getMessage(),
@@ -65,33 +48,6 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler {
                         HttpStatus.FORBIDDEN, ex.getMessage(),
                         ((ServletWebRequest) request).getRequest().getRequestURI());
         return new ResponseEntity<Object>(body, HttpStatus.FORBIDDEN);
-    }
-
-    @ExceptionHandler(PlaneNotFoundException.class)
-    public ResponseEntity<?> handlePlaneNotFoundException(PlaneNotFoundException ex, WebRequest request) {
-        ExceptionBody body =
-                new ExceptionBody(LocalDateTime.now(),
-                        HttpStatus.UNPROCESSABLE_ENTITY, ex.getMessage(),
-                        ((ServletWebRequest) request).getRequest().getRequestURI());
-        return new ResponseEntity<Object>(body, HttpStatus.UNPROCESSABLE_ENTITY);
-    }
-
-    @ExceptionHandler(InvalidFlightScheduleException.class)
-    public ResponseEntity<?> handleInvalidFlightScheduleException(InvalidFlightScheduleException ex, WebRequest request) {
-        ExceptionBody body =
-                new ExceptionBody(LocalDateTime.now(),
-                        HttpStatus.BAD_REQUEST, ex.getMessage(),
-                        ((ServletWebRequest) request).getRequest().getRequestURI());
-        return new ResponseEntity<Object>(body, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(BlankPropertyException.class)
-    public ResponseEntity<?> handleBlankPropertyException(BlankPropertyException ex, WebRequest request) {
-        ExceptionBody body =
-                new ExceptionBody(LocalDateTime.now(),
-                        HttpStatus.BAD_REQUEST, ex.getMessage(),
-                        ((ServletWebRequest) request).getRequest().getRequestURI());
-        return new ResponseEntity<Object>(body, HttpStatus.BAD_REQUEST);
     }
 
     @Override

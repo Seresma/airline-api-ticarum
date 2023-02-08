@@ -4,14 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.validation.constraints.Future;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Data
-public class UpdateFlightDTO {
+public class UpdateFlightDto {
 
     @Pattern(regexp = "[a-zA-Z ]+", message = "origin can only contain letters")
     private String origin;

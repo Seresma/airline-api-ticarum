@@ -6,9 +6,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class GlobalConfig {
+
     public static final String AIRLINE_NAME = "airline";
+    public static final boolean IS_AUTHENTICATION_ENABLE = false;
+
     @Bean
-    public ModelMapper modelMapper (){
+    public ModelMapper modelMapper() {
         return new ModelMapper();
     }
 }

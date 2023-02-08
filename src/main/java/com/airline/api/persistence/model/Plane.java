@@ -1,4 +1,4 @@
-package com.airline.api.persistence.domain;
+package com.airline.api.persistence.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,6 +12,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = "registrationCode")
+})
 public class Plane {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

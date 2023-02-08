@@ -1,4 +1,4 @@
-package com.airline.api.persistence.domain;
+package com.airline.api.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

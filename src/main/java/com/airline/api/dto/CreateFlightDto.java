@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Data
-public class CreateFlightDTO {
+public class CreateFlightDto {
     @NotBlank(message = "origin must not be empty")
     @Pattern(regexp = "[a-zA-Z ]+", message = "origin can only contain letters")
     private String origin;
