@@ -1,0 +1,4948 @@
+{
+	"info": {
+		"_postman_id": "7ad82243-aae9-4539-bc16-37086d6d4cd0",
+		"name": "Airline API Endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20304887"
+	},
+	"item": [
+		{
+			"name": "Authentication disabled",
+			"item": [
+				{
+					"name": "info",
+					"item": [
+						{
+							"name": "Gets airline info",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/info",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"info"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/info",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"info"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:29:11 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"name\": \"Airline\",\n    \"planeCount\": 5\n}"
+								},
+								{
+									"name": "Airline Not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/info",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"info"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 08 Feb 2023 13:07:21 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-08T14:07:21.9353508\",\n    \"status\": \"NOT_FOUND\",\n    \"message\": \"Cannot find airline with name: airline\",\n    \"path\": \"/airline/info\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "vuelo",
+					"item": [
+						{
+							"name": "Gets pending flights",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/vuelo",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"vuelo"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:29:54 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"origin\": \"Murcia\",\n        \"destination\": \"Madrid\",\n        \"etd\": \"2023-03-21T10:00:00\",\n        \"eta\": \"2023-03-21T12:00:00\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T01:26:55.372541\",\n                \"status\": \"PENDING\"\n            }\n        ],\n        \"hasDeparted\": false,\n        \"plane\": {\n            \"id\": 3,\n            \"model\": \"Boeing 737\",\n            \"capacity\": 300,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA3\"\n        }\n    },\n    {\n        \"id\": 2,\n        \"origin\": \"Buenos Aires\",\n        \"destination\": \"Paris\",\n        \"etd\": \"2023-03-29T10:00:00\",\n        \"eta\": \"2023-03-29T20:00:00\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T01:26:55.398541\",\n                \"status\": \"PENDING\"\n            }\n        ],\n        \"hasDeparted\": false,\n        \"plane\": {\n            \"id\": 1,\n            \"model\": \"Airbus A320\",\n            \"capacity\": 250,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA1\"\n        }\n    }\n]"
+								},
+								{
+									"name": "Ok - Empty list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:00:05 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[]"
+								}
+							]
+						},
+						{
+							"name": "Adds new flight",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"destination\": \"Paris\",\r\n    \"eta\": \"2023-03-07T18:34:24.443Z\",\r\n    \"etd\": \"2023-03-06T17:34:24.443Z\",\r\n    \"origin\": \"Miami\",\r\n    \"planeRegistrationCode\": \"EC-AA5\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/vuelo",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"vuelo"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Paris\",\r\n    \"eta\": \"2023-03-07T18:34:24.443Z\",\r\n    \"etd\": \"2023-03-06T17:34:24.443Z\",\r\n    \"origin\": \"Miami\",\r\n    \"planeRegistrationCode\": \"EC-AA5\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:38:10 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 5,\n    \"origin\": \"Miami\",\n    \"destination\": \"Paris\",\n    \"etd\": \"2023-03-06T17:34:24.443\",\n    \"eta\": \"2023-03-07T18:34:24.443\",\n    \"statuses\": [\n        {\n            \"statusDate\": \"2023-02-09T01:38:10.0117943\",\n            \"status\": \"PENDING\"\n        }\n    ],\n    \"hasDeparted\": false,\n    \"plane\": {\n        \"id\": 5,\n        \"model\": \"Boeing 777\",\n        \"capacity\": 500,\n        \"airline\": {\n            \"id\": 1,\n            \"name\": \"Airline\",\n            \"planeCount\": 5\n        },\n        \"registrationCode\": \"EC-AA5\"\n    }\n}"
+								},
+								{
+									"name": "Bad request - invalid schedule",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Paris\",\r\n    \"eta\": \"2023-03-05T18:34:24.443Z\",\r\n    \"etd\": \"2023-03-06T17:34:24.443Z\",\r\n    \"origin\": \"Miami\",\r\n    \"planeRegistrationCode\": \"EC-AA5\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:39:38 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T01:39:38.2455711\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"Estimated date of departure (etd) must be before the estimated date of arrival (eta) and both must be future dates\",\n    \"path\": \"/airline/vuelo\"\n}"
+								},
+								{
+									"name": "Bad request - blank property",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \" \",\r\n    \"eta\": \"2023-03-05T18:34:24.443Z\",\r\n    \"etd\": \"2023-03-06T17:34:24.443Z\",\r\n    \"origin\": \"Miami\",\r\n    \"planeRegistrationCode\": \"EC-AA5\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:41:19 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T01:41:19.2576103\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.airline.api.persistence.model.Flight> com.airline.api.controllers.AirlineController.addFlight(com.airline.api.dto.CreateFlightDto): [Field error in object 'createFlightDto' on field 'destination': rejected value [ ]; codes [NotBlank.createFlightDto.destination,NotBlank.destination,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createFlightDto.destination,destination]; arguments []; default message [destination]]; default message [destination must not be empty]] \",\n    \"path\": \"/airline/vuelo\"\n}"
+								},
+								{
+									"name": "Bad request - past date",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Paris\",\r\n    \"eta\": \"2023-03-07T18:34:24.443Z\",\r\n    \"etd\": \"2022-03-06T17:34:24.443Z\",\r\n    \"origin\": \"Miami\",\r\n    \"planeRegistrationCode\": \"EC-AA5\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:03:06 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:03:06.5694862\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.airline.api.persistence.model.Flight> com.airline.api.controllers.AirlineController.addFlight(com.airline.api.dto.CreateFlightDto): [Field error in object 'createFlightDto' on field 'etd': rejected value [2022-03-06T17:34:24.443]; codes [Future.createFlightDto.etd,Future.etd,Future.java.time.LocalDateTime,Future]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createFlightDto.etd,etd]; arguments []; default message [etd]]; default message [etd must be a future date]] \",\n    \"path\": \"/airline/vuelo\"\n}"
+								},
+								{
+									"name": "Bad request - bad registration code format",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Murcia\",\r\n    \"eta\": \"2023-03-05T18:34:24.443Z\",\r\n    \"etd\": \"2023-03-06T17:34:24.443Z\",\r\n    \"origin\": \"Miami\",\r\n    \"planeRegistrationCode\": \"1234214\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:42:39 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T01:42:39.7896745\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.airline.api.persistence.model.Flight> com.airline.api.controllers.AirlineController.addFlight(com.airline.api.dto.CreateFlightDto): [Field error in object 'createFlightDto' on field 'planeRegistrationCode': rejected value [1234214]; codes [Pattern.createFlightDto.planeRegistrationCode,Pattern.planeRegistrationCode,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createFlightDto.planeRegistrationCode,planeRegistrationCode]; arguments []; default message [planeRegistrationCode],[Ljavax.validation.constraints.Pattern$Flag;@4f9d2969,[A-Z0-9]+-[A-Z0-9]+]; default message [planeRegistrationCode must follow this format [A-Z0-9]+-[A-Z0-9]+]] \",\n    \"path\": \"/airline/vuelo\"\n}"
+								},
+								{
+									"name": "Plane Not found - registration code does not refer to any plane",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Murcia\",\r\n    \"eta\": \"2023-03-07T18:34:24.443Z\",\r\n    \"etd\": \"2023-03-06T17:34:24.443Z\",\r\n    \"origin\": \"Miami\",\r\n    \"planeRegistrationCode\": \"EC-ABC\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:44:09 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T01:44:09.5077111\",\n    \"status\": \"NOT_FOUND\",\n    \"message\": \"Cannot find plane with registration code: EC-ABC\",\n    \"path\": \"/airline/vuelo\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Gets flight by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/vuelo/5",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"vuelo",
+										"5"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:48:22 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 5,\n    \"origin\": \"Miami\",\n    \"destination\": \"Paris\",\n    \"etd\": \"2023-03-06T17:34:24.443\",\n    \"eta\": \"2023-03-07T18:34:24.443\",\n    \"statuses\": [\n        {\n            \"statusDate\": \"2023-02-09T01:38:10.011794\",\n            \"status\": \"PENDING\"\n        }\n    ],\n    \"hasDeparted\": false,\n    \"plane\": {\n        \"id\": 5,\n        \"model\": \"Boeing 777\",\n        \"capacity\": 500,\n        \"airline\": {\n            \"id\": 1,\n            \"name\": \"Airline\",\n            \"planeCount\": 5\n        },\n        \"registrationCode\": \"EC-AA5\"\n    }\n}"
+								},
+								{
+									"name": "Bad request - invalid ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/sdfafs",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"sdfafs"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:49:09 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T01:49:09.8428394\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \\\"sdfafs\\\"\",\n    \"path\": \"/airline/vuelo/sdfafs\"\n}"
+								},
+								{
+									"name": "Not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/20",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"20"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:50:31 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T01:50:31.5714175\",\n    \"status\": \"NOT_FOUND\",\n    \"message\": \"Cannot find flight with ID: 20\",\n    \"path\": \"/airline/vuelo/20\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Updates flight by ID",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"destination\": \"Polo Sur\",\r\n    \"origin\": \"Polo Norte\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/vuelo/5",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"vuelo",
+										"5"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "No content part 1",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Polo Sur\",\r\n    \"origin\": \"Polo Norte\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:55:08 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "No content part 2",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:56:14 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 5,\n    \"origin\": \"Polo Norte\",\n    \"destination\": \"Polo Sur\",\n    \"etd\": \"2023-03-06T17:34:24.443\",\n    \"eta\": \"2023-03-07T18:34:24.443\",\n    \"statuses\": [\n        {\n            \"statusDate\": \"2023-02-09T01:38:10.011794\",\n            \"status\": \"PENDING\"\n        }\n    ],\n    \"hasDeparted\": false,\n    \"plane\": {\n        \"id\": 5,\n        \"model\": \"Boeing 777\",\n        \"capacity\": 500,\n        \"airline\": {\n            \"id\": 1,\n            \"name\": \"Airline\",\n            \"planeCount\": 5\n        },\n        \"registrationCode\": \"EC-AA5\"\n    }\n}"
+								},
+								{
+									"name": "Bad request - invalid ID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Polo Sur\",\r\n    \"origin\": \"Polo Norte\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/asdfasf",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"asdfasf"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:57:23 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T01:57:23.1978308\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \\\"asdfasf\\\"\",\n    \"path\": \"/airline/vuelo/asdfasf\"\n}"
+								},
+								{
+									"name": "Bad request - blank property",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Polo Sur\",\r\n    \"origin\": \" \"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:58:45 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T01:58:45.0647358\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"origin cannot be blank\",\n    \"path\": \"/airline/vuelo/5\"\n}"
+								},
+								{
+									"name": "Bad request - invalid schedule",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"etd\": \"2023-03-06T17:34:24.443\",\r\n    \"eta\": \"2023-03-06T17:34:24.443\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:05:02 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:05:02.0300097\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"Estimated date of departure (etd) must be before the estimated date of arrival (eta) and both must be future dates\",\n    \"path\": \"/airline/vuelo/5\"\n}"
+								},
+								{
+									"name": "Bad request - past date",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"etd\": \"2022-03-06T17:34:24.443\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:02:04 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:02:04.3082238\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"Validation failed for argument [1] in public org.springframework.http.ResponseEntity<java.lang.Void> com.airline.api.controllers.AirlineController.updateFlightById(java.lang.Long,com.airline.api.dto.UpdateFlightDto): [Field error in object 'updateFlightDto' on field 'etd': rejected value [2022-03-06T17:34:24.443]; codes [Future.updateFlightDto.etd,Future.etd,Future.java.time.LocalDateTime,Future]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [updateFlightDto.etd,etd]; arguments []; default message [etd]]; default message [etd must be a future date]] \",\n    \"path\": \"/airline/vuelo/5\"\n}"
+								},
+								{
+									"name": "Bad request - bad registration code format",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"planeRegistrationCode\": \"4123421\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:06:25 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:06:25.075846\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"Validation failed for argument [1] in public org.springframework.http.ResponseEntity<java.lang.Void> com.airline.api.controllers.AirlineController.updateFlightById(java.lang.Long,com.airline.api.dto.UpdateFlightDto): [Field error in object 'updateFlightDto' on field 'planeRegistrationCode': rejected value [4123421]; codes [Pattern.updateFlightDto.planeRegistrationCode,Pattern.planeRegistrationCode,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [updateFlightDto.planeRegistrationCode,planeRegistrationCode]; arguments []; default message [planeRegistrationCode],[Ljavax.validation.constraints.Pattern$Flag;@4f9d2969,[A-Z0-9]+-[A-Z0-9]+]; default message [planeRegistrationCode must follow this format [A-Z0-9]+-[A-Z0-9]+]] \",\n    \"path\": \"/airline/vuelo/5\"\n}"
+								},
+								{
+									"name": "Plane not found - registration code does not refer to any plane",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"planeRegistrationCode\": \"EC-AAAAA\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:07:11 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:07:11.131723\",\n    \"status\": \"NOT_FOUND\",\n    \"message\": \"Cannot find plane with registration code: EC-AAAAA\",\n    \"path\": \"/airline/vuelo/5\"\n}"
+								},
+								{
+									"name": "Flight Not found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Polo Sur\",\r\n    \"origin\": \"Polo Norte\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/10",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"10"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 00:58:05 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T01:58:05.5838514\",\n    \"status\": \"NOT_FOUND\",\n    \"message\": \"Cannot find flight with ID: 10\",\n    \"path\": \"/airline/vuelo/10\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Deletes flight by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/vuelo/5",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"vuelo",
+										"5"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "No content part 1",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:10:34 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "No content part 2",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:10:57 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:10:57.2711693\",\n    \"status\": \"NOT_FOUND\",\n    \"message\": \"Cannot find flight with ID: 5\",\n    \"path\": \"/airline/vuelo/5\"\n}"
+								},
+								{
+									"name": "Bad request - invalid ID",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/asdfsad",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"asdfsad"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:11:59 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:11:59.6410122\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \\\"asdfsad\\\"\",\n    \"path\": \"/airline/vuelo/asdfsad\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "salida",
+					"item": [
+						{
+							"name": "Gets departed flights",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/salida",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"salida"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:12:52 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 3,\n        \"origin\": \"Valencia\",\n        \"destination\": \"Barcelona\",\n        \"etd\": \"2023-03-15T10:00:00\",\n        \"eta\": \"2023-03-15T12:00:00\",\n        \"departDate\": \"2023-02-09T01:26:55.425541\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T01:26:55.40554\",\n                \"status\": \"PENDING\"\n            },\n            {\n                \"statusDate\": \"2023-02-09T01:26:55.42454\",\n                \"status\": \"DEPARTED\"\n            }\n        ],\n        \"hasDeparted\": true,\n        \"plane\": {\n            \"id\": 2,\n            \"model\": \"Boeing 777\",\n            \"capacity\": 500,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA2\"\n        }\n    },\n    {\n        \"id\": 4,\n        \"origin\": \"Berlin\",\n        \"destination\": \"Roma\",\n        \"etd\": \"2023-03-15T10:00:00\",\n        \"eta\": \"2023-03-15T13:00:00\",\n        \"departDate\": \"2023-02-09T01:26:55.432541\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T01:26:55.413541\",\n                \"status\": \"PENDING\"\n            },\n            {\n                \"statusDate\": \"2023-02-09T01:26:55.43154\",\n                \"status\": \"DEPARTED\"\n            }\n        ],\n        \"hasDeparted\": true,\n        \"plane\": {\n            \"id\": 5,\n            \"model\": \"Boeing 777\",\n            \"capacity\": 500,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA5\"\n        }\n    }\n]"
+								},
+								{
+									"name": "Ok - Empty list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:01:31 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[]"
+								}
+							]
+						},
+						{
+							"name": "Gets flight status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/salida/4",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"salida",
+										"4"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok - not departed v1",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/1",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:15:04 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"hasDeparted\": false\n}"
+								},
+								{
+									"name": "Ok - not departed v2",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/1",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:15:45 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"origin\": \"Murcia\",\n    \"destination\": \"Madrid\",\n    \"etd\": \"2023-03-21T10:00:00\",\n    \"eta\": \"2023-03-21T12:00:00\",\n    \"statuses\": [\n        {\n            \"statusDate\": \"2023-02-09T01:26:55.372541\",\n            \"status\": \"PENDING\"\n        }\n    ],\n    \"hasDeparted\": false,\n    \"plane\": {\n        \"id\": 3,\n        \"model\": \"Boeing 737\",\n        \"capacity\": 300,\n        \"airline\": {\n            \"id\": 1,\n            \"name\": \"Airline\",\n            \"planeCount\": 5\n        },\n        \"registrationCode\": \"EC-AA3\"\n    }\n}"
+								},
+								{
+									"name": "Ok - departed v1",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/4",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"4"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:17:05 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"hasDeparted\": true,\n    \"departDate\": \"2023-02-09T01:26:55.432541\"\n}"
+								},
+								{
+									"name": "Ok - departed v2",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/4",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"4"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:17:27 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 4,\n    \"origin\": \"Berlin\",\n    \"destination\": \"Roma\",\n    \"etd\": \"2023-03-15T10:00:00\",\n    \"eta\": \"2023-03-15T13:00:00\",\n    \"departDate\": \"2023-02-09T01:26:55.432541\",\n    \"statuses\": [\n        {\n            \"statusDate\": \"2023-02-09T01:26:55.413541\",\n            \"status\": \"PENDING\"\n        },\n        {\n            \"statusDate\": \"2023-02-09T01:26:55.43154\",\n            \"status\": \"DEPARTED\"\n        }\n    ],\n    \"hasDeparted\": true,\n    \"plane\": {\n        \"id\": 5,\n        \"model\": \"Boeing 777\",\n        \"capacity\": 500,\n        \"airline\": {\n            \"id\": 1,\n            \"name\": \"Airline\",\n            \"planeCount\": 5\n        },\n        \"registrationCode\": \"EC-AA5\"\n    }\n}"
+								},
+								{
+									"name": "Bad request - invalid ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/asdfas",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"asdfas"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:18:28 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:18:28.9503921\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \\\"asdfas\\\"\",\n    \"path\": \"/airline/salida/asdfas\"\n}"
+								},
+								{
+									"name": "Flight not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/10",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"10"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:18:59 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:18:59.3158974\",\n    \"status\": \"NOT_FOUND\",\n    \"message\": \"Cannot find flight with ID: 10\",\n    \"path\": \"/airline/salida/10\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Departs a flight",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/salida/1/despegue",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"salida",
+										"1",
+										"despegue"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "No content - v1",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/1/despegue",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"1",
+												"despegue"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:21:20 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "No content - v2",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/1",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:22:48 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"hasDeparted\": true,\n    \"departDate\": \"2023-02-09T02:21:20.192947\"\n}"
+								},
+								{
+									"name": "Bad request - invalid ID",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/dsgfsdfg/despegue",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"dsgfsdfg",
+												"despegue"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:24:25 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:24:25.8955214\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \\\"dsgfsdfg\\\"\",\n    \"path\": \"/airline/salida/dsgfsdfg/despegue\"\n}"
+								},
+								{
+									"name": "Flight not found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/7/despegue",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"7",
+												"despegue"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:24:59 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:24:59.5806641\",\n    \"status\": \"NOT_FOUND\",\n    \"message\": \"Cannot find flight with ID: 7\",\n    \"path\": \"/airline/salida/7/despegue\"\n}"
+								},
+								{
+									"name": "Conflict - departed flight v1",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:23:27 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"origin\": \"Murcia\",\n        \"destination\": \"Madrid\",\n        \"etd\": \"2023-03-21T10:00:00\",\n        \"eta\": \"2023-03-21T12:00:00\",\n        \"departDate\": \"2023-02-09T02:21:20.192947\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T01:26:55.372541\",\n                \"status\": \"PENDING\"\n            },\n            {\n                \"statusDate\": \"2023-02-09T02:21:20.19194\",\n                \"status\": \"DEPARTED\"\n            }\n        ],\n        \"hasDeparted\": true,\n        \"plane\": {\n            \"id\": 3,\n            \"model\": \"Boeing 737\",\n            \"capacity\": 300,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA3\"\n        }\n    },\n    {\n        \"id\": 3,\n        \"origin\": \"Valencia\",\n        \"destination\": \"Barcelona\",\n        \"etd\": \"2023-03-15T10:00:00\",\n        \"eta\": \"2023-03-15T12:00:00\",\n        \"departDate\": \"2023-02-09T01:26:55.425541\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T01:26:55.40554\",\n                \"status\": \"PENDING\"\n            },\n            {\n                \"statusDate\": \"2023-02-09T01:26:55.42454\",\n                \"status\": \"DEPARTED\"\n            }\n        ],\n        \"hasDeparted\": true,\n        \"plane\": {\n            \"id\": 2,\n            \"model\": \"Boeing 777\",\n            \"capacity\": 500,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA2\"\n        }\n    },\n    {\n        \"id\": 4,\n        \"origin\": \"Berlin\",\n        \"destination\": \"Roma\",\n        \"etd\": \"2023-03-15T10:00:00\",\n        \"eta\": \"2023-03-15T13:00:00\",\n        \"departDate\": \"2023-02-09T01:26:55.432541\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T01:26:55.413541\",\n                \"status\": \"PENDING\"\n            },\n            {\n                \"statusDate\": \"2023-02-09T01:26:55.43154\",\n                \"status\": \"DEPARTED\"\n            }\n        ],\n        \"hasDeparted\": true,\n        \"plane\": {\n            \"id\": 5,\n            \"model\": \"Boeing 777\",\n            \"capacity\": 500,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA5\"\n        }\n    }\n]"
+								},
+								{
+									"name": "Conflict - departed flight v2",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/1/despegue",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"1",
+												"despegue"
+											]
+										}
+									},
+									"status": "Conflict",
+									"code": 409,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:23:57 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:23:57.3601185\",\n    \"status\": \"CONFLICT\",\n    \"message\": \"Flight with ID: 1 has already departed\",\n    \"path\": \"/airline/salida/1/despegue\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Authentication enabled",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "Sign up",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123456789\",\r\n    \"email\": \"admin@gmail.com\",\r\n    \"rol\": \"ADMIN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/auth/signup",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok - USER",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"123456789\",\r\n    \"email\": \"user@gmail.com\",\r\n    \"rol\": \"USER\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/auth/signup",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"auth",
+												"signup"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain;charset=UTF-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "29"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:52:43 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "User registered successfully!"
+								},
+								{
+									"name": "Ok - ADMIN",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123456789\",\r\n    \"email\": \"admin@gmail.com\",\r\n    \"rol\": \"ADMIN\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/auth/signup",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"auth",
+												"signup"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain;charset=UTF-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "29"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:52:13 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "User registered successfully!"
+								}
+							]
+						},
+						{
+							"name": "Login in",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/auth/login",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok - ADMIN",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123456789\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/auth/login",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:58:19 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY3NTkwNzg5OSwiZXhwIjoxNjc1OTk0Mjk5fQ.tsa5hRtd3uLXP9cmFTToBr58XZfENu-9p4G4qg-CXwBQ-MRFI3pFtWaE-taJSsO_Lal14J71gyVcE81MvTuD_g\",\n    \"type\": \"Bearer\",\n    \"id\": 2,\n    \"username\": \"admin\",\n    \"email\": \"admin@gmail.com\",\n    \"rol\": \"ADMIN\"\n}"
+								},
+								{
+									"name": "Ok - USER",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"123456789\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/auth/login",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 01:58:44 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNjc1OTA3OTI0LCJleHAiOjE2NzU5OTQzMjR9._C4uE87uisMSYBG5auea1OPDIhBR4PZog0TVzIc-QJl9JZsWDzzlbatvc7BSBUeNHkrEymItmZ48WESQFU2gcg\",\n    \"type\": \"Bearer\",\n    \"id\": 3,\n    \"username\": \"user\",\n    \"email\": \"user@gmail.com\",\n    \"rol\": \"USER\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "info",
+					"item": [
+						{
+							"name": "Gets airline info",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{user_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/info",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"info"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok - USER",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{user_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/info",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"info"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:23:05 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"name\": \"Airline\",\n    \"planeCount\": 5\n}"
+								},
+								{
+									"name": "Ok - ADMIN",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{admin_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/info",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"info"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:23:50 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"name\": \"Airline\",\n    \"planeCount\": 5\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/info",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"info"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "128"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:14:37 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"path\": \"/airline/info\",\n    \"error\": \"Unauthorized\",\n    \"message\": \"Full authentication is required to access this resource\",\n    \"status\": 401\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "vuelo",
+					"item": [
+						{
+							"name": "Gets pending flights",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{user_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/vuelo",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"vuelo"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok - USER",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{user_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:29:29 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"origin\": \"Murcia\",\n        \"destination\": \"Madrid\",\n        \"etd\": \"2023-03-21T10:00:00\",\n        \"eta\": \"2023-03-21T12:00:00\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T03:14:24.880372\",\n                \"status\": \"PENDING\"\n            }\n        ],\n        \"hasDeparted\": false,\n        \"plane\": {\n            \"id\": 3,\n            \"model\": \"Boeing 737\",\n            \"capacity\": 300,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA3\"\n        }\n    },\n    {\n        \"id\": 2,\n        \"origin\": \"Buenos Aires\",\n        \"destination\": \"Paris\",\n        \"etd\": \"2023-03-29T10:00:00\",\n        \"eta\": \"2023-03-29T20:00:00\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T03:14:24.910339\",\n                \"status\": \"PENDING\"\n            }\n        ],\n        \"hasDeparted\": false,\n        \"plane\": {\n            \"id\": 1,\n            \"model\": \"Airbus A320\",\n            \"capacity\": 250,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA1\"\n        }\n    }\n]"
+								},
+								{
+									"name": "Ok - ADMIN",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{admin_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:30:08 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"origin\": \"Murcia\",\n        \"destination\": \"Madrid\",\n        \"etd\": \"2023-03-21T10:00:00\",\n        \"eta\": \"2023-03-21T12:00:00\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T03:14:24.880372\",\n                \"status\": \"PENDING\"\n            }\n        ],\n        \"hasDeparted\": false,\n        \"plane\": {\n            \"id\": 3,\n            \"model\": \"Boeing 737\",\n            \"capacity\": 300,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA3\"\n        }\n    },\n    {\n        \"id\": 2,\n        \"origin\": \"Buenos Aires\",\n        \"destination\": \"Paris\",\n        \"etd\": \"2023-03-29T10:00:00\",\n        \"eta\": \"2023-03-29T20:00:00\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T03:14:24.910339\",\n                \"status\": \"PENDING\"\n            }\n        ],\n        \"hasDeparted\": false,\n        \"plane\": {\n            \"id\": 1,\n            \"model\": \"Airbus A320\",\n            \"capacity\": 250,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA1\"\n        }\n    }\n]"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "129"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:28:27 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"path\": \"/airline/vuelo\",\n    \"error\": \"Unauthorized\",\n    \"message\": \"Full authentication is required to access this resource\",\n    \"status\": 401\n}"
+								}
+							]
+						},
+						{
+							"name": "Adds new flight",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"destination\": \"Paris\",\r\n    \"eta\": \"2023-03-07T18:34:24.443Z\",\r\n    \"etd\": \"2023-03-06T17:34:24.443Z\",\r\n    \"origin\": \"Miami\",\r\n    \"planeRegistrationCode\": \"EC-AA5\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/vuelo",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"vuelo"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Created - ADMIN",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{admin_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Paris\",\r\n    \"eta\": \"2023-03-07T18:34:24.443Z\",\r\n    \"etd\": \"2023-03-06T17:34:24.443Z\",\r\n    \"origin\": \"Miami\",\r\n    \"planeRegistrationCode\": \"EC-AA5\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:33:13 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 5,\n    \"origin\": \"Miami\",\n    \"destination\": \"Paris\",\n    \"etd\": \"2023-03-06T17:34:24.443\",\n    \"eta\": \"2023-03-07T18:34:24.443\",\n    \"statuses\": [\n        {\n            \"statusDate\": \"2023-02-09T03:33:13.4616443\",\n            \"status\": \"PENDING\"\n        }\n    ],\n    \"hasDeparted\": false,\n    \"plane\": {\n        \"id\": 5,\n        \"model\": \"Boeing 777\",\n        \"capacity\": 500,\n        \"airline\": {\n            \"id\": 1,\n            \"name\": \"Airline\",\n            \"planeCount\": 5\n        },\n        \"registrationCode\": \"EC-AA5\"\n    }\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Paris\",\r\n    \"eta\": \"2023-03-07T18:34:24.443Z\",\r\n    \"etd\": \"2023-03-06T17:34:24.443Z\",\r\n    \"origin\": \"Miami\",\r\n    \"planeRegistrationCode\": \"EC-AA5\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "129"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:31:17 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"path\": \"/airline/vuelo\",\n    \"error\": \"Unauthorized\",\n    \"message\": \"Full authentication is required to access this resource\",\n    \"status\": 401\n}"
+								},
+								{
+									"name": "Forbidden - USER",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{user_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Paris\",\r\n    \"eta\": \"2023-03-07T18:34:24.443Z\",\r\n    \"etd\": \"2023-03-06T17:34:24.443Z\",\r\n    \"origin\": \"Miami\",\r\n    \"planeRegistrationCode\": \"EC-AA5\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:32:22 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:32:22.544+00:00\",\n    \"status\": 403,\n    \"error\": \"Forbidden\",\n    \"message\": \"Forbidden\",\n    \"path\": \"/airline/vuelo\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Gets flight by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{user_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/vuelo/5",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"vuelo",
+										"5"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok - USER",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{user_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:35:15 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 5,\n    \"origin\": \"Miami\",\n    \"destination\": \"Paris\",\n    \"etd\": \"2023-03-06T17:34:24.443\",\n    \"eta\": \"2023-03-07T18:34:24.443\",\n    \"statuses\": [\n        {\n            \"statusDate\": \"2023-02-09T03:33:13.461644\",\n            \"status\": \"PENDING\"\n        }\n    ],\n    \"hasDeparted\": false,\n    \"plane\": {\n        \"id\": 5,\n        \"model\": \"Boeing 777\",\n        \"capacity\": 500,\n        \"airline\": {\n            \"id\": 1,\n            \"name\": \"Airline\",\n            \"planeCount\": 5\n        },\n        \"registrationCode\": \"EC-AA5\"\n    }\n}"
+								},
+								{
+									"name": "Ok - ADMIN",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{admin_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:35:53 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 5,\n    \"origin\": \"Miami\",\n    \"destination\": \"Paris\",\n    \"etd\": \"2023-03-06T17:34:24.443\",\n    \"eta\": \"2023-03-07T18:34:24.443\",\n    \"statuses\": [\n        {\n            \"statusDate\": \"2023-02-09T03:33:13.461644\",\n            \"status\": \"PENDING\"\n        }\n    ],\n    \"hasDeparted\": false,\n    \"plane\": {\n        \"id\": 5,\n        \"model\": \"Boeing 777\",\n        \"capacity\": 500,\n        \"airline\": {\n            \"id\": 1,\n            \"name\": \"Airline\",\n            \"planeCount\": 5\n        },\n        \"registrationCode\": \"EC-AA5\"\n    }\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "131"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:34:09 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"path\": \"/airline/vuelo/5\",\n    \"error\": \"Unauthorized\",\n    \"message\": \"Full authentication is required to access this resource\",\n    \"status\": 401\n}"
+								}
+							]
+						},
+						{
+							"name": "Updates flight by ID",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"destination\": \"Polo Sur\",\r\n    \"origin\": \"Polo Norte\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/vuelo/5",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"vuelo",
+										"5"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "No content - ADMIN",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{admin_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Polo Sur\",\r\n    \"origin\": \"Polo Norte\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:38:34 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Polo Sur\",\r\n    \"origin\": \"Polo Norte\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "131"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:36:59 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"path\": \"/airline/vuelo/5\",\n    \"error\": \"Unauthorized\",\n    \"message\": \"Full authentication is required to access this resource\",\n    \"status\": 401\n}"
+								},
+								{
+									"name": "Forbidden - USER",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{user_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"destination\": \"Polo Sur\",\r\n    \"origin\": \"Polo Norte\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:37:47 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:37:47.933+00:00\",\n    \"status\": 403,\n    \"error\": \"Forbidden\",\n    \"message\": \"Forbidden\",\n    \"path\": \"/airline/vuelo/5\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Deletes flight by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/vuelo/5",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"vuelo",
+										"5"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "No content - ADMIN",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{admin_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:40:45 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "131"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:39:16 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"path\": \"/airline/vuelo/5\",\n    \"error\": \"Unauthorized\",\n    \"message\": \"Full authentication is required to access this resource\",\n    \"status\": 401\n}"
+								},
+								{
+									"name": "Forbidden - USER",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{user_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo/5",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo",
+												"5"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:40:19 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:40:19.557+00:00\",\n    \"status\": 403,\n    \"error\": \"Forbidden\",\n    \"message\": \"Forbidden\",\n    \"path\": \"/airline/vuelo/5\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "salida",
+					"item": [
+						{
+							"name": "Gets departed flights",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{user_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/salida",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"salida"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok - USER",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{user_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:43:21 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 3,\n        \"origin\": \"Valencia\",\n        \"destination\": \"Barcelona\",\n        \"etd\": \"2023-03-15T10:00:00\",\n        \"eta\": \"2023-03-15T12:00:00\",\n        \"departDate\": \"2023-02-09T03:14:24.938374\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T03:14:24.919373\",\n                \"status\": \"PENDING\"\n            },\n            {\n                \"statusDate\": \"2023-02-09T03:14:24.938374\",\n                \"status\": \"DEPARTED\"\n            }\n        ],\n        \"hasDeparted\": true,\n        \"plane\": {\n            \"id\": 2,\n            \"model\": \"Boeing 777\",\n            \"capacity\": 500,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA2\"\n        }\n    },\n    {\n        \"id\": 4,\n        \"origin\": \"Berlin\",\n        \"destination\": \"Roma\",\n        \"etd\": \"2023-03-15T10:00:00\",\n        \"eta\": \"2023-03-15T13:00:00\",\n        \"departDate\": \"2023-02-09T03:14:24.945375\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T03:14:24.927377\",\n                \"status\": \"PENDING\"\n            },\n            {\n                \"statusDate\": \"2023-02-09T03:14:24.945375\",\n                \"status\": \"DEPARTED\"\n            }\n        ],\n        \"hasDeparted\": true,\n        \"plane\": {\n            \"id\": 5,\n            \"model\": \"Boeing 777\",\n            \"capacity\": 500,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA5\"\n        }\n    }\n]"
+								},
+								{
+									"name": "Ok - ADMIN",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{admin_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:43:43 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 3,\n        \"origin\": \"Valencia\",\n        \"destination\": \"Barcelona\",\n        \"etd\": \"2023-03-15T10:00:00\",\n        \"eta\": \"2023-03-15T12:00:00\",\n        \"departDate\": \"2023-02-09T03:14:24.938374\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T03:14:24.919373\",\n                \"status\": \"PENDING\"\n            },\n            {\n                \"statusDate\": \"2023-02-09T03:14:24.938374\",\n                \"status\": \"DEPARTED\"\n            }\n        ],\n        \"hasDeparted\": true,\n        \"plane\": {\n            \"id\": 2,\n            \"model\": \"Boeing 777\",\n            \"capacity\": 500,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA2\"\n        }\n    },\n    {\n        \"id\": 4,\n        \"origin\": \"Berlin\",\n        \"destination\": \"Roma\",\n        \"etd\": \"2023-03-15T10:00:00\",\n        \"eta\": \"2023-03-15T13:00:00\",\n        \"departDate\": \"2023-02-09T03:14:24.945375\",\n        \"statuses\": [\n            {\n                \"statusDate\": \"2023-02-09T03:14:24.927377\",\n                \"status\": \"PENDING\"\n            },\n            {\n                \"statusDate\": \"2023-02-09T03:14:24.945375\",\n                \"status\": \"DEPARTED\"\n            }\n        ],\n        \"hasDeparted\": true,\n        \"plane\": {\n            \"id\": 5,\n            \"model\": \"Boeing 777\",\n            \"capacity\": 500,\n            \"airline\": {\n                \"id\": 1,\n                \"name\": \"Airline\",\n                \"planeCount\": 5\n            },\n            \"registrationCode\": \"EC-AA5\"\n        }\n    }\n]"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "130"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:42:45 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"path\": \"/airline/salida\",\n    \"error\": \"Unauthorized\",\n    \"message\": \"Full authentication is required to access this resource\",\n    \"status\": 401\n}"
+								}
+							]
+						},
+						{
+							"name": "Gets flight status",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{user_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/salida/4",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"salida",
+										"4"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok - USER",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{user_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/4",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"4"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:45:48 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"hasDeparted\": true,\n    \"departDate\": \"2023-02-09T03:14:24.945375\"\n}"
+								},
+								{
+									"name": "Ok - ADMIN",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{admin_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/4",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"4"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:46:04 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"hasDeparted\": true,\n    \"departDate\": \"2023-02-09T03:14:24.945375\"\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/4",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"4"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "132"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:44:55 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"path\": \"/airline/salida/4\",\n    \"error\": \"Unauthorized\",\n    \"message\": \"Full authentication is required to access this resource\",\n    \"status\": 401\n}"
+								}
+							]
+						},
+						{
+							"name": "Departs a flight",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{user_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{server}}/{{airline_name}}/salida/1/despegue",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"{{airline_name}}",
+										"salida",
+										"1",
+										"despegue"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "No content - ADMIN",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{admin_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/1/despegue",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"1",
+												"despegue"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:51:49 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/1/despegue",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"1",
+												"despegue"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "141"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:48:31 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"path\": \"/airline/salida/1/despegue\",\n    \"error\": \"Unauthorized\",\n    \"message\": \"Full authentication is required to access this resource\",\n    \"status\": 401\n}"
+								},
+								{
+									"name": "Forbidden - USER",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{user_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/salida/1/despegue",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"salida",
+												"1",
+												"despegue"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 09 Feb 2023 02:51:09 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-09T02:51:09.557+00:00\",\n    \"status\": 403,\n    \"error\": \"Forbidden\",\n    \"message\": \"Forbidden\",\n    \"path\": \"/airline/salida/1/despegue\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

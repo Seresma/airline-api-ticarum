@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class GlobalConfig {
 
     public static final String AIRLINE_NAME = "airline";
-    public static final boolean IS_AUTHENTICATION_ENABLE = false;
+    public static final boolean IS_AUTHENTICATION_ENABLE = true;
     //Only testing purpose
     public static final boolean IS_DATA_INITIALIZATION_ENABLE = true;
 

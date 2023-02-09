@@ -68,7 +68,7 @@ public class SecurityConfig {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(authEntryPointJwt).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/auth/**").permitAll()
+                .authorizeRequests().antMatchers("/" + GlobalConfig.AIRLINE_NAME + "/auth/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/" + GlobalConfig.AIRLINE_NAME + "/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers(HttpMethod.POST,"/" + GlobalConfig.AIRLINE_NAME + "/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.PUT,"/" + GlobalConfig.AIRLINE_NAME + "/**").hasRole("ADMIN")

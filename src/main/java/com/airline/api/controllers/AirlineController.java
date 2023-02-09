@@ -66,7 +66,7 @@ public class AirlineController {
             @ApiResponse(code = 200, message = "Successful operation"),
             @ApiResponse(code = 400, message = "Invalid ID"),
             @ApiResponse(code = 401, message = "You must register to do this operation"),
-            @ApiResponse(code = 404, message = "Flight not found"),
+            @ApiResponse(code = 404, message = "Flight not found/registration code does not refer to any plane"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @GetMapping("/vuelo/{ID_VUELO}")

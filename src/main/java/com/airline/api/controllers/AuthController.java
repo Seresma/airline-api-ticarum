@@ -4,6 +4,7 @@ import com.airline.api.auth.dto.LoginDto;
 import com.airline.api.auth.dto.SignupDto;
 import com.airline.api.auth.dto.UserJwtDto;
 import com.airline.api.auth.services.UserServiceImpl;
+import com.airline.api.context.GlobalConfig;
 import io.swagger.annotations.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import javax.validation.Valid;
 @RestController
 @AllArgsConstructor
 @Api(description = "Provides endpoints to authenticate users" )
-@RequestMapping("/auth")
+@RequestMapping(GlobalConfig.AIRLINE_NAME + "/auth")
 public class AuthController {
 
   private final UserServiceImpl userService;
