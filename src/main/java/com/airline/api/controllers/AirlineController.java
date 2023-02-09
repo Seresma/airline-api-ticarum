@@ -2,11 +2,11 @@ package com.airline.api.controllers;
 
 import com.airline.api.context.GlobalConfig;
 import com.airline.api.dto.CreateFlightDto;
+import com.airline.api.dto.FlightStatusDto;
 import com.airline.api.dto.UpdateFlightDto;
 import com.airline.api.persistence.model.Airline;
 import com.airline.api.persistence.model.Flight;
 import com.airline.api.persistence.model.FlightStatus;
-import com.airline.api.responses.FlightStatusResponse;
 import com.airline.api.services.AirlineServiceImpl;
 import io.swagger.annotations.*;
 import lombok.AllArgsConstructor;
@@ -40,7 +40,6 @@ public class AirlineController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful operation"),
             @ApiResponse(code = 401, message = "You must register to do this operation"),
-            @ApiResponse(code = 404, message = "No pending flights found"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @GetMapping("/vuelo")
@@ -126,7 +125,7 @@ public class AirlineController {
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @GetMapping("/salida/{ID_VUELO}")
-    public FlightStatusResponse getFlightStatus(@ApiParam(value = "Flight ID", required = true) @PathVariable("ID_VUELO") Long id) {
+    public FlightStatusDto getFlightStatus(@ApiParam(value = "Flight ID", required = true) @PathVariable("ID_VUELO") Long id) {
         return this.airlineService.getFlightStatus(id);
     }
 

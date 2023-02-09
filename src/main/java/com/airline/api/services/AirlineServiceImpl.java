@@ -2,14 +2,17 @@ package com.airline.api.services;
 
 import com.airline.api.context.GlobalConfig;
 import com.airline.api.dto.CreateFlightDto;
+import com.airline.api.dto.FlightStatusDto;
 import com.airline.api.dto.UpdateFlightDto;
-import com.airline.api.exceptions.*;
+import com.airline.api.exceptions.BadRequestException;
+import com.airline.api.exceptions.DepartedFlightException;
+import com.airline.api.exceptions.EntityNotFoundException;
+import com.airline.api.exceptions.NotPendingFlightException;
 import com.airline.api.persistence.model.*;
 import com.airline.api.persistence.repositories.AirlineRepository;
 import com.airline.api.persistence.repositories.FlightRepository;
 import com.airline.api.persistence.repositories.FlightStatusRepository;
 import com.airline.api.persistence.repositories.PlaneRepository;
-import com.airline.api.responses.FlightStatusResponse;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -31,6 +34,16 @@ public class AirlineServiceImpl {
         return this.flightStatusRepository.save(new FlightStatus(null, dateTime, flightStatusEnum));
     }
 
+    //Only testing purpose
+    public Airline createAirline(Airline airline) {
+        return this.airlineRepository.save(airline);
+    }
+
+    //Only testing purpose
+    public Plane createPlane(Plane plane) {
+        return this.planeRepository.save(plane);
+    }
+
     public Airline getAirline() {
         Airline airline = this.airlineRepository.findByNameIgnoreCase(GlobalConfig.AIRLINE_NAME);
         if (airline == null)
@@ -39,11 +52,7 @@ public class AirlineServiceImpl {
     }
 
     public Set<Flight> getPendingFlights() {
-        Set<Flight> pendingFlights = this.getAirline().getPendingFlights();
-        if(pendingFlights.isEmpty())
-            throw new EntityNotFoundException("There are no pending flights in the system");
-        else
-            return pendingFlights;
+        return this.getAirline().getPendingFlights();
     }
 
     public Flight addFlight(CreateFlightDto flightDTO) {
@@ -59,10 +68,15 @@ public class AirlineServiceImpl {
         flight.setHasDeparted(false);
         flight.addFlightStatus(this.addFlightStatus(LocalDateTime.now(), FlightStatusEnum.PENDING));
 
-        Airline airline = this.getAirline();
-        airline.addPendingFlight(flight);
+        Flight flightCreated = this.flightRepository.save(flight);
+        Airline airline = flight.getAirline();
 
-        return this.flightRepository.save(flight);
+        if (airline != null) {
+            airline.addPendingFlight(flightCreated);
+            this.airlineRepository.save(airline);
+        }
+
+        return flightCreated;
     }
 
     public Flight findFlightById(Long id) {
@@ -116,45 +130,48 @@ public class AirlineServiceImpl {
 
     public void deleteFlightById(Long id) {
         Flight flight = this.findFlightById(id);
-        if (this.getAirline().isInPendingFlights(flight))
-            this.getAirline().removePendingFlight(flight);
-        else
-            this.getAirline().removeDepartedFlight(flight);
+        Airline airline = flight.getAirline();
 
-        this.airlineRepository.save(this.getAirline());
+        if (airline != null && airline.isInPendingFlights(flight)) {
+            airline.removePendingFlight(flight);
+            this.airlineRepository.save(airline);
+        } else if (airline != null && this.getAirline().isInDepartedFlights(flight)) {
+            airline.removeDepartedFlight(flight);
+            this.airlineRepository.save(airline);
+        }
+
         this.flightRepository.deleteById(id);
     }
 
     public Set<Flight> getDepartedFlights() {
-        Set<Flight> departedFlights = this.getAirline().getDepartedFlights();
-        if(departedFlights.isEmpty())
-            throw new EntityNotFoundException("There are no departed flights in the system");
-        else
-            return departedFlights;
+        return this.getAirline().getDepartedFlights();
     }
 
-    public FlightStatusResponse getFlightStatus(Long id) {
+    public FlightStatusDto getFlightStatus(Long id) {
         Flight flight = this.findFlightById(id);
-        if(flight.getHasDeparted()){
-            return modelmapper.map(flight, FlightStatusResponse.class);
+        if (flight.getHasDeparted()) {
+            return modelmapper.map(flight, FlightStatusDto.class);
         }
-        return new FlightStatusResponse(false, null);
+        return new FlightStatusDto(false, null);
     }
 
     @Transactional
     public void departFlight(Long id) {
         Flight flight = this.findFlightById(id);
-        Airline airline = this.getAirline();
-        if(flight.getHasDeparted())
+        Airline airline = flight.getAirline();
+        if (flight.getHasDeparted())
             throw new DepartedFlightException(flight.getId());
-        if(!airline.isInPendingFlights(flight)) {
+        if (airline != null && !airline.isInPendingFlights(flight)) {
             throw new NotPendingFlightException(flight.getId());
         }
         flight.setHasDeparted(true);
         flight.addFlightStatus(this.addFlightStatus(LocalDateTime.now(), FlightStatusEnum.DEPARTED));
         flight.setDepartDate(LocalDateTime.now());
-        airline.addDepartedFlight(flight);
         this.flightRepository.save(flight);
-        this.airlineRepository.save(airline);
+
+        if (airline != null) {
+            airline.addDepartedFlight(flight);
+            this.airlineRepository.save(airline);
+        }
     }
 }

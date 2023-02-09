@@ -1,11 +1,11 @@
-package com.airline.api.auth.responses;
+package com.airline.api.auth.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class UserJwtResponse {
+public class UserJwtDto {
 	private String token;
 	private String type;
 	private Long id;

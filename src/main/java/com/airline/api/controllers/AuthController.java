@@ -2,7 +2,7 @@ package com.airline.api.controllers;
 
 import com.airline.api.auth.dto.LoginDto;
 import com.airline.api.auth.dto.SignupDto;
-import com.airline.api.auth.responses.UserJwtResponse;
+import com.airline.api.auth.dto.UserJwtDto;
 import com.airline.api.auth.services.UserServiceImpl;
 import io.swagger.annotations.*;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,7 @@ public class AuthController {
 
   private final UserServiceImpl userService;
 
-  @ApiOperation(value = "Logs user into the system", response = UserJwtResponse.class)
+  @ApiOperation(value = "Logs user into the system", response = UserJwtDto.class)
   @ApiResponses(value = {
           @ApiResponse(code = 200, message = "Successful operation"),
           @ApiResponse(code = 400, message = "Invalid username/password supplied"),
@@ -28,7 +28,7 @@ public class AuthController {
           @ApiResponse(code = 500, message = "Internal Server Error")
   })
   @PostMapping("/login")
-  public UserJwtResponse authenticateUser(@ApiParam(value = "User credentials", required = true) @Valid @RequestBody LoginDto login) {
+  public UserJwtDto authenticateUser(@ApiParam(value = "User credentials", required = true) @Valid @RequestBody LoginDto login) {
     return this.userService.authenticateUser(login);
   }
 

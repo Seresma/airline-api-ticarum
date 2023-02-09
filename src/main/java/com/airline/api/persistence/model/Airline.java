@@ -33,6 +33,11 @@ public class Airline {
     @JoinColumn(name = "airline_departed_id")
     private Set<Flight> departedFlights = new HashSet<>();
 
+    public Airline(String name, Integer planeCount) {
+        this.name = name;
+        this.planeCount = planeCount;
+    }
+
     public boolean addPendingFlight(Flight flight) {
         return this.pendingFlights.add(flight);
     }

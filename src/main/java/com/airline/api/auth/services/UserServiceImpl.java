@@ -6,7 +6,7 @@ import com.airline.api.exceptions.BadRequestException;
 import com.airline.api.auth.model.Role;
 import com.airline.api.auth.model.User;
 import com.airline.api.auth.repositories.UserRepository;
-import com.airline.api.auth.responses.UserJwtResponse;
+import com.airline.api.auth.dto.UserJwtDto;
 import com.airline.api.auth.security.JwtUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,14 +25,14 @@ public class UserServiceImpl {
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;
 
-    public UserJwtResponse authenticateUser(LoginDto loginDto) {
+    public UserJwtDto authenticateUser(LoginDto loginDto) {
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String jwt = jwtUtils.generateJwtToken(authentication);
         User user = userRepository.findByUsername(userDetails.getUsername());
-        return new UserJwtResponse(jwt, "Bearer", user.getId(), user.getUsername(), user.getEmail(),
+        return new UserJwtDto(jwt, "Bearer", user.getId(), user.getUsername(), user.getEmail(),
                 user.getRole().toString());
 
     }

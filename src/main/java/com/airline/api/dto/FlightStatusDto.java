@@ -1,4 +1,4 @@
-package com.airline.api.responses;
+package com.airline.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class FlightStatusResponse {
+public class FlightStatusDto {
     private Boolean hasDeparted;
     private LocalDateTime departDate;
 }

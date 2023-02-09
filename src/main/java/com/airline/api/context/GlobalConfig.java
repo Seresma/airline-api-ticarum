@@ -9,6 +9,8 @@ public class GlobalConfig {
 
     public static final String AIRLINE_NAME = "airline";
     public static final boolean IS_AUTHENTICATION_ENABLE = false;
+    //Only testing purpose
+    public static final boolean IS_DATA_INITIALIZATION_ENABLE = true;
 
     @Bean
     public ModelMapper modelMapper() {

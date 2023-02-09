@@ -27,7 +27,7 @@ public class Flight {
     private LocalDateTime etd;
     private LocalDateTime eta;
     private LocalDateTime departDate;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "flight_id")
     private List<FlightStatus> statuses = new ArrayList<>();
     private Boolean hasDeparted;
@@ -42,5 +42,13 @@ public class Flight {
     @JsonIgnore
     public boolean isCorrectSchedule() {
         return this.eta.isAfter(this.etd);
+    }
+
+    @JsonIgnore
+    public Airline getAirline() {
+        if (this.getPlane() != null)
+            return this.getPlane().getAirline();
+        else
+            return null;
     }
 }
