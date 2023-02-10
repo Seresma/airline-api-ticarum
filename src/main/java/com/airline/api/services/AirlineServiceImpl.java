@@ -128,17 +128,7 @@ public class AirlineServiceImpl {
     }
 
     public void deleteFlightById(Long id) {
-        Flight flight = this.findFlightById(id);
-        // Flight must have an airline, cannot be null
-        Airline airline = flight.getAirline();
-
-        if (airline.isInPendingFlights(flight))
-            airline.removePendingFlight(flight);
-        else
-            airline.removeDepartedFlight(flight);
-
-        this.airlineRepository.save(airline);
-        this.flightRepository.deleteById(id);
+        this.flightRepository.delete(this.findFlightById(id));
     }
 
     public Set<Flight> getDepartedFlights() {

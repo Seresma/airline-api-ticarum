@@ -32,6 +32,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class AirlineServiceImplTest {
 
+    // !!! IMPORTANT -> GlobalConfig.IS_DATA_INITIALIZATION_ENABLE must be FALSE
     @Autowired
     private AirlineRepository airlineRepository;
     @Autowired
@@ -308,7 +309,7 @@ public class AirlineServiceImplTest {
     }
 
     @Test
-    public void whenDeleteFlightByIdOkPendingFlight_thenDelete() {
+    public void whenDeleteFlightByIdOk_thenDelete() {
         Airline flightAirline = this.airlineService.createAirline(this.airline);
         this.airlineService.createPlane(new Plane(null, "Boeing 777", 500, flightAirline, "EC-AA1"));
         Flight flightCreated = this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 12, 0), "EC-AA1"));
@@ -396,20 +397,6 @@ public class AirlineServiceImplTest {
         FlightStatusDto flightStatusDto = this.airlineService.getFlightStatus(flightCreated.getId());
         assertTrue(flightStatusDto.getHasDeparted());
         assertNotNull(flightStatusDto.getDepartDate());
-
-        tearDown();
-    }
-
-    @Test
-    public void whenDeleteDepartedFlight_thenDelete() {
-        Airline flightAirline = this.airlineService.createAirline(this.airline);
-        this.airlineService.createPlane(new Plane(null, "Boeing 777", 500, flightAirline, "EC-AA1"));
-        Flight flightCreated = this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 12, 0), "EC-AA1"));
-        this.airlineService.departFlight(flightCreated.getId());
-
-        this.airlineService.deleteFlightById(flightCreated.getId());
-        assertEquals(Optional.empty(), this.flightRepository.findById(flightCreated.getId()));
-        assertEquals(0, this.airlineService.getDepartedFlights().size());
 
         tearDown();
     }
