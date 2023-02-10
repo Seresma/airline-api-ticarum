@@ -16,6 +16,7 @@ import com.airline.api.persistence.repositories.FlightRepository;
 import com.airline.api.persistence.repositories.FlightStatusRepository;
 import com.airline.api.persistence.repositories.PlaneRepository;
 import com.airline.api.utils.Utils;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,8 @@ public class AirlineServiceImplTest {
     private final Airline airline = new Airline(Utils.capitalizeFirstLetter(GlobalConfig.AIRLINE_NAME), 5);
     private final Plane plane1 = new Plane(null, "Airbus A320", 250, null, "EC-AA1");
 
-    private void tearDown() {
+    @After
+    public void tearDown() {
         this.flightRepository.deleteAll();
         this.flightStatusRepository.deleteAll();
         this.planeRepository.deleteAll();
@@ -69,8 +71,6 @@ public class AirlineServiceImplTest {
         assertEquals(5, airlineSaved.getPlaneCount());
         assertEquals(0, airlineSaved.getPendingFlights().size());
         assertEquals(0, airlineSaved.getDepartedFlights().size());
-
-        this.airlineRepository.deleteAll();
     }
 
     @Test
@@ -85,8 +85,6 @@ public class AirlineServiceImplTest {
 
         assertEquals(0, this.airlineService.getPendingFlights().size());
         assertEquals(this.airlineService.getAirline().getPendingFlights().size(), this.airlineService.getPendingFlights().size());
-
-        this.airlineRepository.deleteAll();
     }
 
     @Test
@@ -96,8 +94,6 @@ public class AirlineServiceImplTest {
         Throwable exception = assertThrows(BadRequestException.class, () -> this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 8, 0), "EC-AA3")));
         assertEquals("Estimated date of departure (etd) must be before the estimated date of arrival (eta)", exception.getMessage());
         assertEquals(0, this.airlineService.getPendingFlights().size());
-
-        this.airlineRepository.deleteAll();
     }
 
     @Test
@@ -107,8 +103,6 @@ public class AirlineServiceImplTest {
         Throwable exception = assertThrows(BadRequestException.class, () -> this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 10, 0), "EC-AA3")));
         assertEquals("Estimated date of departure (etd) must be before the estimated date of arrival (eta)", exception.getMessage());
         assertEquals(0, this.airlineService.getPendingFlights().size());
-
-        this.airlineRepository.deleteAll();
     }
 
     @Test
@@ -118,28 +112,23 @@ public class AirlineServiceImplTest {
         Throwable exception = assertThrows(EntityNotFoundException.class, () -> this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 12, 0), "EC-AA1")));
         assertEquals("Cannot find plane with registration code: EC-AA1", exception.getMessage());
         assertEquals(0, this.airlineService.getPendingFlights().size());
-
-        this.airlineRepository.deleteAll();
     }
 
     @Test
     public void whenAddFlightNoAirline_thenEntityNotFoundException() throws EntityNotFoundException {
         this.airlineRepository.save(this.airline);
-        this.planeRepository.save(plane1);
+        this.planeRepository.save(this.plane1);
 
         Throwable exception = assertThrows(EntityNotFoundException.class, () -> this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 12, 0), "EC-AA1")));
         assertEquals("Cannot find the flight airline from the plane", exception.getMessage());
         assertEquals(0, this.airlineService.getPendingFlights().size());
-
-        this.planeRepository.deleteAll();
-        this.airlineRepository.deleteAll();
     }
 
     @Test
     public void whenAddFlightOk_thenReturnNewFlight() {
         Airline flightAirline = this.airlineRepository.save(this.airline);
-        plane1.setAirline(flightAirline);
-        Plane flightPlane = this.planeRepository.save(plane1);
+        this.plane1.setAirline(flightAirline);
+        Plane flightPlane = this.planeRepository.save(this.plane1);
 
         Flight flightCreated = this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 12, 0), "EC-AA1"));
         assertEquals("Murcia", flightCreated.getOrigin());
@@ -154,8 +143,6 @@ public class AirlineServiceImplTest {
         assertEquals(FlightStatusEnum.PENDING, flightCreated.getStatuses().get(0).getStatus());
         assertEquals(1, this.airlineService.getPendingFlights().size());
         assertTrue(this.airlineService.getPendingFlights().contains(flightCreated));
-
-        this.tearDown();
     }
 
     @Test
@@ -167,14 +154,12 @@ public class AirlineServiceImplTest {
     @Test
     public void whenFindFlightByIdOk_thenReturnFlight() {
         Airline flightAirline = this.airlineRepository.save(this.airline);
-        plane1.setAirline(flightAirline);
-        this.planeRepository.save(plane1);
+        this.plane1.setAirline(flightAirline);
+        this.planeRepository.save(this.plane1);
 
         Flight flightCreated = this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 12, 0), "EC-AA1"));
         Flight flightReturned = this.airlineService.findFlightById(flightCreated.getId());
         assertEquals(flightReturned, flightCreated);
-
-        this.tearDown();
     }
 
     @Test
@@ -186,8 +171,8 @@ public class AirlineServiceImplTest {
     @Test
     public void whenUpdateFlightByIdBlankOrigin_thenBadRequestException() throws BadRequestException {
         Airline flightAirline = this.airlineRepository.save(this.airline);
-        plane1.setAirline(flightAirline);
-        this.planeRepository.save(plane1);
+        this.plane1.setAirline(flightAirline);
+        this.planeRepository.save(this.plane1);
 
         Flight flightCreated = this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 12, 0), "EC-AA1"));
         UpdateFlightDto updateFlightDto = new UpdateFlightDto("Alicante", "Barcelona", LocalDateTime.of(2023, 3, 21, 20, 0), LocalDateTime.of(2023, 3, 21, 22, 0), "EC-AA1");
@@ -195,15 +180,13 @@ public class AirlineServiceImplTest {
         Throwable exception = assertThrows(BadRequestException.class, () -> this.airlineService.updateFlightById(flightCreated.getId(), updateFlightDto));
         assertEquals("origin cannot be blank", exception.getMessage());
         assertEquals(flightCreated, this.airlineService.findFlightById(flightCreated.getId()));
-
-        this.tearDown();
     }
 
     @Test
     public void whenUpdateFlightByIdBlankDestination_thenBadRequestException() throws BadRequestException {
         Airline flightAirline = this.airlineRepository.save(this.airline);
-        plane1.setAirline(flightAirline);
-        this.planeRepository.save(plane1);
+        this.plane1.setAirline(flightAirline);
+        this.planeRepository.save(this.plane1);
 
         Flight flightCreated = this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 12, 0), "EC-AA1"));
         UpdateFlightDto updateFlightDto = new UpdateFlightDto("Alicante", "Barcelona", LocalDateTime.of(2023, 3, 21, 20, 0), LocalDateTime.of(2023, 3, 21, 22, 0), "EC-AA1");
@@ -211,15 +194,13 @@ public class AirlineServiceImplTest {
         Throwable exception = assertThrows(BadRequestException.class, () -> this.airlineService.updateFlightById(flightCreated.getId(), updateFlightDto));
         assertEquals("destination cannot be blank", exception.getMessage());
         assertEquals(flightCreated, this.airlineService.findFlightById(flightCreated.getId()));
-
-        this.tearDown();
     }
 
     @Test
     public void whenUpdateFlightByIdEtaBeforeEtd_thenBadRequestException() throws BadRequestException {
         Airline flightAirline = this.airlineRepository.save(this.airline);
-        plane1.setAirline(flightAirline);
-        this.planeRepository.save(plane1);
+        this.plane1.setAirline(flightAirline);
+        this.planeRepository.save(this.plane1);
 
         Flight flightCreated = this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 12, 0), "EC-AA1"));
         UpdateFlightDto updateFlightDto = new UpdateFlightDto("Alicante", "Barcelona", LocalDateTime.of(2023, 3, 21, 20, 0), LocalDateTime.of(2023, 3, 21, 22, 0), "EC-AA1");
@@ -227,61 +208,53 @@ public class AirlineServiceImplTest {
         Throwable exception = assertThrows(BadRequestException.class, () -> this.airlineService.updateFlightById(flightCreated.getId(), updateFlightDto));
         assertEquals("Estimated date of departure (etd) must be before the estimated date of arrival (eta)", exception.getMessage());
         assertEquals(flightCreated, this.airlineService.findFlightById(flightCreated.getId()));
-
-        this.tearDown();
     }
 
     @Test
     public void whenUpdateFlightByIdRegistrationCodeDoesNotReferPlane_thenEntityNotFoundException() throws EntityNotFoundException {
         Airline flightAirline = this.airlineRepository.save(this.airline);
-        plane1.setAirline(flightAirline);
-        this.planeRepository.save(plane1);
+        this.plane1.setAirline(flightAirline);
+        this.planeRepository.save(this.plane1);
 
         Flight flightCreated = this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 12, 0), "EC-AA1"));
         UpdateFlightDto updateFlightDto = new UpdateFlightDto("Alicante", "Barcelona", LocalDateTime.of(2023, 3, 21, 20, 0), LocalDateTime.of(2023, 3, 21, 22, 0), "EG-AAH");
         Throwable exception = assertThrows(EntityNotFoundException.class, () -> this.airlineService.updateFlightById(flightCreated.getId(), updateFlightDto));
         assertEquals("Cannot find plane with registration code: EG-AAH", exception.getMessage());
         assertEquals(flightCreated, this.airlineService.findFlightById(flightCreated.getId()));
-
-        this.tearDown();
     }
 
     @Test
     public void whenUpdateFlightByIdPlaneDoesNotReferAirline_thenEntityNotFoundException() throws EntityNotFoundException {
         Airline flightAirline = this.airlineRepository.save(this.airline);
-        plane1.setAirline(flightAirline);
-        this.planeRepository.save(plane1);
+        this.plane1.setAirline(flightAirline);
+        this.planeRepository.save(this.plane1);
 
         Flight flightCreated = this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 12, 0), "EC-AA1"));
         UpdateFlightDto updateFlightDto = new UpdateFlightDto("Alicante", "Barcelona", LocalDateTime.of(2023, 3, 21, 20, 0), LocalDateTime.of(2023, 3, 21, 22, 0), "EC-AA1");
-        plane1.setAirline(null);
-        this.planeRepository.save(plane1);
+        this.plane1.setAirline(null);
+        this.planeRepository.save(this.plane1);
         Throwable exception = assertThrows(EntityNotFoundException.class, () -> this.airlineService.updateFlightById(flightCreated.getId(), updateFlightDto));
         assertEquals("Cannot find the flight airline from the plane", exception.getMessage());
         assertEquals(flightCreated, this.airlineService.findFlightById(flightCreated.getId()));
-
-        this.tearDown();
     }
 
     @Test
     public void whenUpdateFlightByIdAllNullProps_thenReturn() {
         Airline flightAirline = this.airlineRepository.save(this.airline);
-        plane1.setAirline(flightAirline);
-        this.planeRepository.save(plane1);
+        this.plane1.setAirline(flightAirline);
+        this.planeRepository.save(this.plane1);
 
         Flight flightCreated = this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 12, 0), "EC-AA1"));
         UpdateFlightDto updateFlightDto = new UpdateFlightDto(null, null, null, null, null);
         this.airlineService.updateFlightById(flightCreated.getId(), updateFlightDto);
         assertEquals(flightCreated, this.airlineService.findFlightById(flightCreated.getId()));
-
-        this.tearDown();
     }
 
     @Test
     public void whenUpdateFlightByIdOk_thenUpdate() {
         Airline flightAirline = this.airlineRepository.save(this.airline);
-        plane1.setAirline(flightAirline);
-        this.planeRepository.save(plane1);
+        this.plane1.setAirline(flightAirline);
+        this.planeRepository.save(this.plane1);
         Plane plane2 = this.airlineService.createPlane(new Plane(null, "Boeing 777", 500, flightAirline, "EC-AA2"));
 
         Flight flightCreated = this.airlineService.addFlight(new CreateFlightDto("Murcia", "Madrid", LocalDateTime.of(2023, 3, 21, 10, 0), LocalDateTime.of(2023, 3, 21, 12, 0), "EC-AA1"));
@@ -298,8 +271,6 @@ public class AirlineServiceImplTest {
         assertEquals(flightAirline, flightUpdated.getAirline());
         assertNull(flightUpdated.getDepartDate());
         assertFalse(flightUpdated.getHasDeparted());
-
-        this.tearDown();
     }
 
     @Test
@@ -318,8 +289,6 @@ public class AirlineServiceImplTest {
 
         assertEquals(Optional.empty(), this.flightRepository.findById(flightCreated.getId()));
         assertEquals(0, this.airlineService.getAirline().getPendingFlights().size());
-
-        tearDown();
     }
 
     @Test
@@ -334,8 +303,6 @@ public class AirlineServiceImplTest {
 
         assertEquals(0, this.airlineService.getDepartedFlights().size());
         assertEquals(this.airlineService.getAirline().getDepartedFlights().size(), this.airlineService.getDepartedFlights().size());
-
-        this.airlineRepository.deleteAll();
     }
 
     @Test
@@ -353,8 +320,6 @@ public class AirlineServiceImplTest {
         FlightStatusDto flightStatusDto = this.airlineService.getFlightStatus(flightCreated.getId());
         assertFalse(flightStatusDto.getHasDeparted());
         assertNull(flightStatusDto.getDepartDate());
-
-        tearDown();
     }
 
     @Test
@@ -370,8 +335,6 @@ public class AirlineServiceImplTest {
         assertEquals(1, this.airlineService.getDepartedFlights().size());
         assertTrue(this.airlineService.getDepartedFlights().contains(flightDeparted));
         assertEquals(0, this.airlineService.getPendingFlights().size());
-
-        tearDown();
     }
 
     @Test
@@ -383,8 +346,6 @@ public class AirlineServiceImplTest {
 
         Throwable exception = assertThrows(DepartedFlightException.class, () -> this.airlineService.departFlight(flightCreated.getId()));
         assertEquals("Flight with ID: " + flightCreated.getId() + " has already departed", exception.getMessage());
-
-        tearDown();
     }
 
     @Test
@@ -397,8 +358,6 @@ public class AirlineServiceImplTest {
         FlightStatusDto flightStatusDto = this.airlineService.getFlightStatus(flightCreated.getId());
         assertTrue(flightStatusDto.getHasDeparted());
         assertNotNull(flightStatusDto.getDepartDate());
-
-        tearDown();
     }
 
     @Test
@@ -412,8 +371,6 @@ public class AirlineServiceImplTest {
         assertEquals(3, this.airlineService.getPendingFlights().size());
         assertTrue(this.airlineService.getPendingFlights().containsAll(Arrays.asList(flightCreated, flightCreated1, flightCreated2)));
         assertEquals(this.airlineService.getAirline().getPendingFlights().size(), this.airlineService.getPendingFlights().size());
-
-        tearDown();
     }
 
     @Test
@@ -430,8 +387,6 @@ public class AirlineServiceImplTest {
         assertEquals(3, this.airlineService.getDepartedFlights().size());
         assertTrue(this.airlineService.getDepartedFlights().containsAll(Arrays.asList(flightCreated, flightCreated1, flightCreated2)));
         assertEquals(this.airlineService.getAirline().getDepartedFlights().size(), this.airlineService.getDepartedFlights().size());
-
-        tearDown();
     }
 
 }
