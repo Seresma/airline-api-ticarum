@@ -41,15 +41,6 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler {
         return new ResponseEntity<Object>(body, HttpStatus.CONFLICT);
     }
 
-    @ExceptionHandler(NotPendingFlightException.class)
-    public ResponseEntity<?> handleDepartNotPendingFlightException(NotPendingFlightException ex, WebRequest request) {
-        ExceptionBody body =
-                new ExceptionBody(LocalDateTime.now(),
-                        HttpStatus.FORBIDDEN, ex.getMessage(),
-                        ((ServletWebRequest) request).getRequest().getRequestURI());
-        return new ResponseEntity<Object>(body, HttpStatus.FORBIDDEN);
-    }
-
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(
             Exception ex, @Nullable Object body, HttpHeaders headers,

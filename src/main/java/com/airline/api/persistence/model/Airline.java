@@ -58,7 +58,4 @@ public class Airline {
     public boolean isInPendingFlights(Flight flight) {
         return this.pendingFlights.contains(flight);
     }
-    public boolean isInDepartedFlights(Flight flight) {
-        return this.departedFlights.contains(flight);
-    }
 }
