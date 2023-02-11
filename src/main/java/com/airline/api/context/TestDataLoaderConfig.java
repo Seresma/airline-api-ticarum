@@ -1,5 +1,7 @@
 package com.airline.api.context;
 
+import com.airline.api.auth.dto.SignupDto;
+import com.airline.api.auth.services.UserServiceImpl;
 import com.airline.api.dto.CreateFlightDto;
 import com.airline.api.persistence.model.Airline;
 import com.airline.api.persistence.model.Flight;
@@ -17,7 +19,7 @@ public class TestDataLoaderConfig {
 
     //Only testing purpose
     @Bean
-    CommandLineRunner initData(AirlineServiceImpl airlineService) {
+    CommandLineRunner initData(AirlineServiceImpl airlineService, UserServiceImpl userService) {
         if (GlobalConfig.IS_DATA_INITIALIZATION_ENABLE)
             return args -> {
                 // Airline
@@ -37,6 +39,9 @@ public class TestDataLoaderConfig {
                 //Depart
                 airlineService.departFlight(flightValencia.getId());
                 airlineService.departFlight(flightBerlin.getId());
+                // Users
+                userService.registerUser(new SignupDto("user", "password", "user@gmail.com", "USER"));
+                userService.registerUser(new SignupDto("admin", "password", "admin@gmail.com", "ADMIN"));
             };
         return null;
     }

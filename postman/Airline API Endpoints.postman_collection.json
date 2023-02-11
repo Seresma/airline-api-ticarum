@@ -228,6 +228,50 @@
 									],
 									"cookie": [],
 									"body": "[]"
+								},
+								{
+									"name": "Airline Not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{server}}/{{airline_name}}/vuelo",
+											"host": [
+												"{{server}}"
+											],
+											"path": [
+												"{{airline_name}}",
+												"vuelo"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 08 Feb 2023 13:07:21 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2023-02-08T14:07:21.9353508\",\n    \"status\": \"NOT_FOUND\",\n    \"message\": \"Cannot find airline with name: airline\",\n    \"path\": \"/airline/info\"\n}"
 								}
 							]
 						},
@@ -317,7 +361,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"destination\": \"Paris\",\r\n    \"eta\": \"2023-03-05T18:34:24.443Z\",\r\n    \"etd\": \"2023-03-06T17:34:24.443Z\",\r\n    \"origin\": \"Miami\",\r\n    \"planeRegistrationCode\": \"EC-AA5\"\r\n}",
+											"raw": "{\r\n    \"destination\": \"Paris\",\r\n    \"eta\": \"2023-03-07T18:34:24.443Z\",\r\n    \"etd\": \"2023-03-07T19:34:24.443Z\",\r\n    \"origin\": \"Miami\",\r\n    \"planeRegistrationCode\": \"EC-AA5\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -349,7 +393,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Thu, 09 Feb 2023 00:39:38 GMT"
+											"value": "Sat, 11 Feb 2023 12:15:56 GMT"
 										},
 										{
 											"key": "Connection",
@@ -357,7 +401,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"timestamp\": \"2023-02-09T01:39:38.2455711\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"Estimated date of departure (etd) must be before the estimated date of arrival (eta) and both must be future dates\",\n    \"path\": \"/airline/vuelo\"\n}"
+									"body": "{\n    \"timestamp\": \"2023-02-11T13:15:56.8813154\",\n    \"status\": \"BAD_REQUEST\",\n    \"message\": \"Estimated date of departure (etd) must be before the estimated date of arrival (eta)\",\n    \"path\": \"/airline/vuelo\"\n}"
 								},
 								{
 									"name": "Bad request - blank property",
