@@ -33,7 +33,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class AirlineServiceImplTest {
 
-    // !!! IMPORTANT -> GlobalConfig.IS_DATA_INITIALIZATION_ENABLE must be FALSE
+    // !!! IMPORTANT -> GlobalConfig.IS_AUTHENTICATION_ENABLE and GlobalConfig.IS_DATA_INITIALIZATION_ENABLE both must be FALSE
+    private final Airline airline = new Airline(Utils.capitalizeFirstLetter(GlobalConfig.AIRLINE_NAME), 5);
+    private final Plane plane1 = new Plane(null, "Airbus A320", 250, null, "EC-AA1");
+
     @Autowired
     private AirlineRepository airlineRepository;
     @Autowired
@@ -44,8 +47,6 @@ public class AirlineServiceImplTest {
     private FlightStatusRepository flightStatusRepository;
     @Autowired
     private AirlineServiceImpl airlineService;
-    private final Airline airline = new Airline(Utils.capitalizeFirstLetter(GlobalConfig.AIRLINE_NAME), 5);
-    private final Plane plane1 = new Plane(null, "Airbus A320", 250, null, "EC-AA1");
 
     @After
     public void tearDown() {

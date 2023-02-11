@@ -22,7 +22,7 @@ public class Plane {
     private String model;
     private Integer capacity;
     @ManyToOne
-    @JoinColumn(name="airline_id")
+    @JoinColumn(name = "airline_id")
     private Airline airline;
     private String registrationCode;
 }

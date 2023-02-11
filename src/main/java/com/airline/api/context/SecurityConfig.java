@@ -30,6 +30,11 @@ public class SecurityConfig {
     private AuthEntryPointJwt authEntryPointJwt;
 
     @Bean
+    public static PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();
     }
@@ -50,11 +55,6 @@ public class SecurityConfig {
     }
 
     @Bean
-    public static PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         if (GlobalConfig.IS_AUTHENTICATION_ENABLE)
             return (web) -> web.ignoring().mvcMatchers("/swagger-ui.html/**", "/configuration/**", "/swagger-resources/**", "/v2/api-docs", "/webjars/**", "/h2-console/**");
@@ -69,9 +69,9 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/" + GlobalConfig.AIRLINE_NAME + "/auth/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/" + GlobalConfig.AIRLINE_NAME + "/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers(HttpMethod.POST,"/" + GlobalConfig.AIRLINE_NAME + "/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT,"/" + GlobalConfig.AIRLINE_NAME + "/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE,"/" + GlobalConfig.AIRLINE_NAME + "/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/" + GlobalConfig.AIRLINE_NAME + "/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/" + GlobalConfig.AIRLINE_NAME + "/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/" + GlobalConfig.AIRLINE_NAME + "/**").hasRole("ADMIN")
                 .antMatchers("/csrf").permitAll()
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated();

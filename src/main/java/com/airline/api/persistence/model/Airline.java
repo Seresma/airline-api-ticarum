@@ -38,24 +38,12 @@ public class Airline {
         this.planeCount = planeCount;
     }
 
-    public boolean addPendingFlight(Flight flight) {
-        return this.pendingFlights.add(flight);
+    public void addPendingFlight(Flight flight) {
+        this.pendingFlights.add(flight);
     }
 
-    public boolean addDepartedFlight(Flight flight) {
-        this.removePendingFlight(flight);
-        return this.departedFlights.add(flight);
-    }
-
-    public boolean removePendingFlight(Flight flight) {
-        return this.pendingFlights.remove(flight);
-    }
-
-    public boolean removeDepartedFlight(Flight flight) {
-        return this.departedFlights.remove(flight);
-    }
-
-    public boolean isInPendingFlights(Flight flight) {
-        return this.pendingFlights.contains(flight);
+    public void addDepartedFlight(Flight flight) {
+        this.pendingFlights.remove(flight);
+        this.departedFlights.add(flight);
     }
 }

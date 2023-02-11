@@ -15,22 +15,22 @@ import javax.validation.constraints.NotBlank;
         @UniqueConstraint(columnNames = "email")
 })
 public class User {
-  @Id
-  @GeneratedValue
-  private Long id;
-  @NotBlank
-  private String username;
-  @NotBlank
-  private String password;
-  @NotBlank
-  @Email
-  private String email;
-  private Role role;
+    @Id
+    @GeneratedValue
+    private Long id;
+    @NotBlank
+    private String username;
+    @NotBlank
+    private String password;
+    @NotBlank
+    @Email
+    private String email;
+    private Role role;
 
-  public User(String username, String password, String email, Role rol) {
-    this.username = username;
-    this.password = password;
-    this.email = email;
-    this.role = rol;
-  }
+    public User(String username, String password, String email, Role rol) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = rol;
+    }
 }

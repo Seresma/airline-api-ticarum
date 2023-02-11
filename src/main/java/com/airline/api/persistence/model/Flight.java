@@ -32,10 +32,10 @@ public class Flight {
     private List<FlightStatus> statuses = new ArrayList<>();
     private Boolean hasDeparted;
     @ManyToOne
-    @JoinColumn(name="plane_id")
+    @JoinColumn(name = "plane_id")
     private Plane plane;
 
-    public void addFlightStatus(FlightStatus flightStatus){
+    public void addFlightStatus(FlightStatus flightStatus) {
         this.getStatuses().add(flightStatus);
     }
 

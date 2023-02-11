@@ -33,16 +33,6 @@ public class AirlineServiceImpl {
         return this.flightStatusRepository.save(new FlightStatus(null, dateTime, flightStatusEnum));
     }
 
-    //Only testing purpose
-    public Airline createAirline(Airline airline) {
-        return this.airlineRepository.save(airline);
-    }
-
-    //Only testing purpose
-    public Plane createPlane(Plane plane) {
-        return this.planeRepository.save(plane);
-    }
-
     public Airline getAirline() {
         Airline airline = this.airlineRepository.findByNameIgnoreCase(GlobalConfig.AIRLINE_NAME);
         if (airline == null)
@@ -94,15 +84,15 @@ public class AirlineServiceImpl {
         }
 
         String destinationUpdate = flightDTO.getDestination();
-        if(destinationUpdate != null) {
-            if(destinationUpdate.isBlank())
+        if (destinationUpdate != null) {
+            if (destinationUpdate.isBlank())
                 throw new BadRequestException("destination cannot be blank");
 
             flight.setDestination(destinationUpdate);
         }
 
         LocalDateTime etdUpdate = flightDTO.getEtd();
-        if(etdUpdate != null) {
+        if (etdUpdate != null) {
             flight.setEtd(etdUpdate);
         }
 
@@ -159,5 +149,15 @@ public class AirlineServiceImpl {
 
         this.flightRepository.save(flight);
         this.airlineRepository.save(airline);
+    }
+
+    //Only testing purpose
+    public Airline createAirline(Airline airline) {
+        return this.airlineRepository.save(airline);
+    }
+
+    //Only testing purpose
+    public Plane createPlane(Plane plane) {
+        return this.planeRepository.save(plane);
     }
 }

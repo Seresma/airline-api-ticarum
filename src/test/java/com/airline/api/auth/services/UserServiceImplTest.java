@@ -21,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class UserServiceImplTest {
 
+    // !!! IMPORTANT -> GlobalConfig.IS_DATA_INITIALIZATION_ENABLE must be FALSE
     @Autowired
     private UserRepository userRepository;
     @Autowired

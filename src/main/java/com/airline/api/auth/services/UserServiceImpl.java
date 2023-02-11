@@ -2,12 +2,12 @@ package com.airline.api.auth.services;
 
 import com.airline.api.auth.dto.LoginDto;
 import com.airline.api.auth.dto.SignupDto;
-import com.airline.api.exceptions.BadRequestException;
+import com.airline.api.auth.dto.UserJwtDto;
 import com.airline.api.auth.model.Role;
 import com.airline.api.auth.model.User;
 import com.airline.api.auth.repositories.UserRepository;
-import com.airline.api.auth.dto.UserJwtDto;
 import com.airline.api.auth.security.JwtUtils;
+import com.airline.api.exceptions.BadRequestException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

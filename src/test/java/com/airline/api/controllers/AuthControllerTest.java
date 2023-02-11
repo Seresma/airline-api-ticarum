@@ -22,14 +22,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class AuthControllerTest {
 
-    // !!! IMPORTANT -> GlobalConfig.IS_AUTHENTICATION_ENABLE must be FALSE
+    // !!! IMPORTANT -> GlobalConfig.IS_AUTHENTICATION_ENABLE and GlobalConfig.IS_DATA_INITIALIZATION_ENABLE both must be FALSE
+    private final String baseUri = "/" + GlobalConfig.AIRLINE_NAME;
+
     @Autowired
     private MockMvc mockMvcAuthController;
     @Autowired
     private UserServiceImpl userService;
     @Autowired
     private UserRepository userRepository;
-    private final String baseUri = "/" + GlobalConfig.AIRLINE_NAME;
 
     @After
     public void tearDown() {

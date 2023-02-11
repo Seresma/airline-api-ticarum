@@ -24,14 +24,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AuthorizedAirlineControllerTest {
 
     // !!! IMPORTANT -> GlobalConfig.IS_AUTHENTICATION_ENABLE and GlobalConfig.IS_DATA_INITIALIZATION_ENABLE both must be TRUE
+    private final String baseUri = "/" + GlobalConfig.AIRLINE_NAME;
+
     @Autowired
     private MockMvc mockMvcAuthorizedAirlineController;
     @Autowired
     private UserServiceImpl userService;
-
     private String userJwtToken;
     private String adminJwtToken;
-    private final String baseUri = "/" + GlobalConfig.AIRLINE_NAME;
 
     @Before
     public void setUp() {

@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Configuration;
 public class GlobalConfig {
 
     public static final String AIRLINE_NAME = "airline";
-    // To run tests this must be false
+    // To run non-authorized run tests this must be false, true if so
     public static final boolean IS_AUTHENTICATION_ENABLE = false;
-    // To run tests this must be false
+    // To run non-authorized tests this must be false, true if so
     public static final boolean IS_DATA_INITIALIZATION_ENABLE = false;
 
     @Bean
