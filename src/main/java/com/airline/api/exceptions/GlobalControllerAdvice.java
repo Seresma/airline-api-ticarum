@@ -4,6 +4,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -41,6 +42,15 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler {
         return new ResponseEntity<Object>(body, HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<?> handleBadCredentialsException(BadCredentialsException ex, WebRequest request) {
+        ExceptionBody body =
+                new ExceptionBody(LocalDateTime.now(),
+                        HttpStatus.UNAUTHORIZED, ex.getMessage(),
+                        ((ServletWebRequest) request).getRequest().getRequestURI());
+        return new ResponseEntity<Object>(body, HttpStatus.UNAUTHORIZED);
+    }
+
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(
             Exception ex, @Nullable Object body, HttpHeaders headers,
@@ -51,4 +61,5 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler {
                         ((ServletWebRequest) request).getRequest().getRequestURI());
         return ResponseEntity.status(status).headers(headers).body(myBody);
     }
+
 }
