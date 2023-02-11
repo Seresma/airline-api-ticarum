@@ -40,6 +40,7 @@ public class AirlineController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful operation"),
             @ApiResponse(code = 401, message = "You must register to do this operation"),
+            @ApiResponse(code = 404, message = "Airline not found"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @GetMapping("/vuelo")
@@ -53,7 +54,7 @@ public class AirlineController {
             @ApiResponse(code = 400, message = "Invalid data supplied"),
             @ApiResponse(code = 401, message = "You must register to do this operation"),
             @ApiResponse(code = 403, message = "Admin access only"),
-            @ApiResponse(code = 404, message = "Registration code does not refer to any plane"),
+            @ApiResponse(code = 404, message = "Airline from plane not found/registration code does not refer to any plane"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @PostMapping("/vuelo")
@@ -66,7 +67,7 @@ public class AirlineController {
             @ApiResponse(code = 200, message = "Successful operation"),
             @ApiResponse(code = 400, message = "Invalid ID"),
             @ApiResponse(code = 401, message = "You must register to do this operation"),
-            @ApiResponse(code = 404, message = "Flight not found/registration code does not refer to any plane"),
+            @ApiResponse(code = 404, message = "Flight not found"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @GetMapping("/vuelo/{ID_VUELO}")
@@ -108,7 +109,7 @@ public class AirlineController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful operation"),
             @ApiResponse(code = 401, message = "You must register to do this operation"),
-            @ApiResponse(code = 404, message = "No departed flights found"),
+            @ApiResponse(code = 404, message = "Airline not found"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @GetMapping("/salida")
