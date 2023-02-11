@@ -6,6 +6,10 @@ vuelos de la aerolinea. Además, cuenta con autenticación mediante Token JWT co
 está documentada con Swagger.
 
 #### Aspectos a tener en cuenta del proyecto:
+* Para ejecutar el proyecto podemos **importar** el proyecto como proyecto *Maven* y ejecutarlo en nuestro IDE o mediante 
+  una **terminal** desde el directorio raíz del proyecto teniendo *Maven* configurado correctamente con los comandos 
+  *mvn clean install* y después *mvn spring-boot:run*.
+
 
 * En la clase *GlobalConfig* localizada en el paquete *"com.airline.api.context"* hay 3 **variables** públicas estáticas
   que son **esenciales** para el correcto funcionamiento del proyecto y sobre todo de las pruebas, tenemos:
@@ -41,10 +45,10 @@ está documentada con Swagger.
   ya que las peticiones de la colección dependen de ese *environment*.
 
 
-* Enlace para acceder a la documentación de *Swagger* una vez ejecutado el
+* Enlace para acceder a la **documentación** de *Swagger* una vez ejecutado el
   proyecto: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
 
-* Enlace para acceder a la consola de *h2* una vez ejecutado el
+* Enlace para acceder a la **consola** de *h2* una vez ejecutado el
   proyecto: [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
 
